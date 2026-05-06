@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women in Contemporary Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Landing: title + CTA. All content injected by JS. -->
+  <section class="screen" id="screen-landing"></section>
+
+  <!-- Series selection: 4 discipline cards -->
+  <section class="screen" id="screen-series-select">
+    <header class="screen-header" id="series-header"></header>
+    <div class="series-grid" id="series-grid"></div>
+  </section>
+
+  <!-- Topic selection + artist flip cards -->
+  <section class="screen" id="screen-topic-select">
+    <header class="screen-header" id="topic-header"></header>
+    <nav class="topic-tabs" id="topic-tabs"></nav>
+    <div class="artist-grid" id="artist-grid"></div>
+  </section>
+
+  <!-- Quiz: one question at a time -->
+  <section class="screen" id="screen-quiz">
+    <header class="screen-header" id="quiz-header"></header>
+    <div class="quiz-container" id="quiz-container"></div>
+  </section>
+
+  <!-- Result: score + insight + navigation -->
+  <section class="screen" id="screen-result">
+    <div class="result-content" id="result-content"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
