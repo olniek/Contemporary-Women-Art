@@ -67,8 +67,10 @@ npm test
 ## Ask (AI Q&A)
 
 - **Static server only** (`python3 -m http.server`): `POST /api/ask` is not available; the Ask UI shows an error unless you use a host that runs serverless functions.
-- **Vercel:** deploy the repo; set `OPENAI_API_KEY` in project env (optional `OPENAI_MODEL`). Local testing: `npx vercel dev` from the project root (loads `.env.local`).
+- **Vercel:** deploy the repo; set **`OPENAI_API_KEY`** for **Production** (and Preview if you use preview URLs). Redeploy after changing env. Optional `OPENAI_MODEL`; optional fallback env name `OPENAI_KEY` only if `OPENAI_API_KEY` is unset. Local testing: `npx vercel dev` (loads `.env.local`).
+- **503 missing OPENAI_API_KEY:** almost always wrong environment scope in Vercel or needs redeploy — see [README.md](README.md) troubleshooting table.
 - **Cross-origin API:** set `window.WIA_ASK_API_URL = "https://your-deployment.vercel.app"` before `app.js` loads if the static site and API live on different origins.
+- **Verify deployment:** `npm run curl:ask -- https://your-deployment.vercel.app`
 
 ## Git workflow
 

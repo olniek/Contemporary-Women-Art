@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "env -u PLAYWRIGHT_BROWSERS_PATH playwright install chromium",
     "check:images": "node scripts/check-artist-images.mjs",
+    "curl:ask": "node scripts/curl-ask.mjs",
     "test": "env -u PLAYWRIGHT_BROWSERS_PATH playwright test && npm run check:images"
   },
   "devDependencies": {

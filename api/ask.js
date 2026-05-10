@@ -1,11 +1,17 @@
 /**
  * Vercel Serverless: POST /api/ask
- * Env: OPENAI_API_KEY (required), OPENAI_MODEL (optional, default gpt-4o-mini)
+ * Env: OPENAI_API_KEY (required), optional fallback OPENAI_KEY, OPENAI_MODEL (default gpt-4o-mini)
  */
 import { APP_DATA } from "../data.js";
 import { flattenArtists, topKArtists } from "../lib/artist-retrieval.js";
 
 const wikiCache = new Map();
+
+/** Trimmed key; supports OPENAI_KEY alias if OPENAI_API_KEY was misnamed in the dashboard. */
+function openAiApiKey() {
+  const raw = process.env.OPENAI_API_KEY || process.env.OPENAI_KEY || "";
+  return typeof raw === "string" ? raw.trim() : "";
+}
 
 function corsHeaders() {
   return {
@@ -54,7 +60,7 @@ async function fetchWikiSummary(title) {
 }
 
 async function callOpenAI(system, user) {
-  const key = process.env.OPENAI_API_KEY;
+  const key = openAiApiKey();
   if (!key) {
     const err = new Error("OPENAI_API_KEY is not configured");
     err.code = "NO_API_KEY";

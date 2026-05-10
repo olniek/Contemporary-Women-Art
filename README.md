@@ -26,8 +26,32 @@ The landing page links to **Ask the collection**, which calls `POST /api/ask`:
 ## Deploy (e.g. Vercel)
 
 1. Connect this Git repository to Vercel (or push a branch and import the repo).
-2. Add environment variables: **`OPENAI_API_KEY`** (required for Ask). Optionally **`OPENAI_MODEL`** (defaults to `gpt-4o-mini`).
-3. Deploy. Serverless functions are picked up from [`api/`](api/) automatically.
+2. **Environment variables** ( **Project → Settings → Environment Variables** ):
+   - **`OPENAI_API_KEY`** — required for Ask (your OpenAI secret key, `sk-…`). Name must match exactly (case-sensitive).
+   - Enable this variable for **Production** if you use the production URL; enable **Preview** if you test PR/branch preview URLs; **Development** is for `vercel dev` linked to the project.
+   - Optionally **`OPENAI_MODEL`** (defaults to `gpt-4o-mini`). Optional alias **`OPENAI_KEY`** is read only if `OPENAI_API_KEY` is unset (see [`api/ask.js`](api/ask.js)).
+3. **Redeploy** after adding or changing secrets so the running deployment receives them (Deployments → … → Redeploy, or push a commit).
+4. Deploy. Serverless functions are picked up from [`api/`](api/) automatically.
+
+### Troubleshooting: “Ask is not configured (missing OPENAI_API_KEY)” (HTTP 503)
+
+The API returns this when no key is visible **to that deployment**. Most often:
+
+| Issue | Fix |
+|--------|-----|
+| Variable only on Preview / Development | Also enable **`OPENAI_API_KEY` for Production** if you open the production site. |
+| Typo in name | Use **`OPENAI_API_KEY`** exactly (not `NEXT_PUBLIC_OPENAI_*`, not `OPEN_AI_API_KEY`). |
+| Added env after deploy | **Redeploy** the project. |
+| Wrong Vercel project | Confirm the repo is linked to the project where you set variables. |
+
+**Smoke-test** your live URL (replace with yours):
+
+```bash
+npm run curl:ask -- https://YOUR-PROJECT.vercel.app
+```
+
+- **503** + `missing OPENAI_API_KEY` → fix scope / name / redeploy (above).
+- **200** + JSON with `answer` → Ask is configured; if the browser still fails, check you are on the same host or set `window.WIA_ASK_API_URL`.
 
 Local parity with production:
 
