@@ -149,8 +149,183 @@ h1, h2, h3 {
   font-size: 1.0625rem;
   color: var(--gray-mid);
   max-width: 44ch;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   line-height: 1.75;
+}
+
+.landing-example {
+  max-width: 400px;
+  margin-bottom: 2.5rem;
+}
+
+.landing-example img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--black);
+}
+
+.landing-example figcaption {
+  font-size: 0.9rem;
+  color: var(--gray-mid);
+  margin-top: 0.75rem;
+  line-height: 1.65;
+}
+
+.landing-example strong {
+  color: var(--black);
+}
+
+.landing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* ── Ask (AI Q&A) ─────────────────────────────────────── */
+
+#screen-ask {
+  justify-content: flex-start;
+}
+
+.ask-header {
+  width: 100%;
+}
+
+.ask-intro {
+  color: var(--gray-mid);
+  max-width: 46ch;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.ask-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 640px;
+}
+
+.ask-input {
+  width: 100%;
+  min-height: 7rem;
+  padding: 0.875rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  border: 1px solid var(--black);
+  background: var(--white);
+  color: var(--black);
+  resize: vertical;
+}
+
+.ask-status {
+  min-height: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--gray-mid);
+  margin-top: 0.75rem;
+}
+
+.ask-response {
+  margin-top: 2rem;
+  max-width: 640px;
+  width: 100%;
+}
+
+.ask-answer {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--black);
+}
+
+.ask-sources {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--gray-light);
+}
+
+.ask-sources-title {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 0.5rem;
+}
+
+.ask-sources-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--gray-mid);
+  line-height: 1.55;
+}
+
+.ask-wiki-attribution {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+  line-height: 1.6;
+}
+
+.ask-wiki-attribution a {
+  color: var(--black);
+}
+
+.flow-stepper-host {
+  margin-bottom: 1.25rem;
+}
+
+.flow-stepper {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.flow-step--current {
+  color: var(--black);
+  font-weight: 600;
+}
+
+.flow-step--complete {
+  color: var(--black);
+  opacity: 0.45;
+}
+
+.flow-step--upcoming {
+  opacity: 0.4;
+}
+
+.flow-step-sep {
+  opacity: 0.35;
+  user-select: none;
+}
+
+.topic-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 
@@ -306,12 +481,36 @@ h1, h2, h3 {
   color: var(--white);
 }
 
-/* Color block acting as image placeholder */
+/* Image or color block placeholder */
 .card-image {
   width: 100%;
   height: 190px;
   flex-shrink: 0;
   margin-bottom: 1rem;
+  overflow: hidden;
+  background: var(--gray-light);
+}
+
+.card-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.card-learn-more {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.card-learn-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.card-learn-link:hover {
+  color: var(--white);
 }
 
 .card-name {
@@ -431,6 +630,73 @@ h1, h2, h3 {
   gap: 0.625rem;
 }
 
+.quiz-hint {
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+  margin-bottom: 1rem;
+  max-width: 40rem;
+}
+
+.quiz-topic-line {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 0.5rem;
+}
+
+.quiz-options--radios {
+  gap: 0.5rem;
+}
+
+.quiz-radio-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid var(--black);
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  transition: background var(--ease);
+}
+
+.quiz-radio-label:has(.quiz-radio-input:checked) {
+  background: var(--gray-light);
+}
+
+.quiz-radio-input {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.quiz-feedback-block {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-light);
+}
+
+.quiz-feedback-heading {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.quiz-feedback-heading:first-child {
+  margin-top: 0;
+}
+
+.quiz-feedback-text {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: #333;
+}
+
+.quiz-continue-btn {
+  margin-top: 2rem;
+}
+
 .quiz-option {
   border: 1px solid var(--black);
   padding: 1rem 1.25rem;
@@ -478,14 +744,13 @@ h1, h2, h3 {
   display: block;
 }
 
-/* Hidden until answer is given; .btn specificity handled by source order */
 .quiz-next-btn {
   margin-top: 2rem;
-  display: none;
 }
 
-.quiz-next-btn.visible {
-  display: inline-block;
+.quiz-next-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 
@@ -533,6 +798,65 @@ h1, h2, h3 {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 0.5rem;
+}
+
+.favorites-empty {
+  color: var(--gray-mid);
+  max-width: 40ch;
+  line-height: 1.7;
+}
+
+.favorites-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 640px;
+}
+
+.favorites-item {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.favorites-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.favorites-series {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 0.35rem;
+}
+
+.favorites-desc {
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+  margin-top: 0.5rem;
+  line-height: 1.55;
+}
+
+.btn-outline {
+  border: 1px solid var(--black);
+  background: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.btn-outline:hover {
+  background: var(--black);
+  color: var(--white);
 }
 
 

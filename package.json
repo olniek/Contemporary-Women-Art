@@ -1,0 +1,13 @@
+{
+  "name": "women-in-contemporary-art",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "env -u PLAYWRIGHT_BROWSERS_PATH playwright install chromium",
+    "check:images": "node scripts/check-artist-images.mjs",
+    "test": "env -u PLAYWRIGHT_BROWSERS_PATH playwright test && npm run check:images"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

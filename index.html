@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Spend time with women artists across media: flip cards for curator-style insight, save favorites, and check understanding with a short quiz.">
+  <meta property="og:title" content="Women in Contemporary Art">
+  <meta property="og:description" content="Explore disciplines, topics, and artists — with favorites and a gentle quiz.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/artists/francesca_woodman.png">
   <title>Women in Contemporary Art</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,33 +16,35 @@
 </head>
 <body>
 
-  <!-- Landing: title + CTA. All content injected by JS. -->
   <section class="screen" id="screen-landing"></section>
 
-  <!-- Series selection: 4 discipline cards -->
+  <section class="screen" id="screen-ask"></section>
+
   <section class="screen" id="screen-series-select">
     <header class="screen-header" id="series-header"></header>
     <div class="series-grid" id="series-grid"></div>
   </section>
 
-  <!-- Topic selection + artist flip cards -->
   <section class="screen" id="screen-topic-select">
     <header class="screen-header" id="topic-header"></header>
     <nav class="topic-tabs" id="topic-tabs"></nav>
     <div class="artist-grid" id="artist-grid"></div>
   </section>
 
-  <!-- Quiz: one question at a time -->
+  <section class="screen" id="screen-favorites">
+    <header class="screen-header" id="favorites-header"></header>
+    <div id="favorites-main"></div>
+  </section>
+
   <section class="screen" id="screen-quiz">
     <header class="screen-header" id="quiz-header"></header>
     <div class="quiz-container" id="quiz-container"></div>
   </section>
 
-  <!-- Result: score + insight + navigation -->
   <section class="screen" id="screen-result">
     <div class="result-content" id="result-content"></div>
   </section>
 
-  <script src="script.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

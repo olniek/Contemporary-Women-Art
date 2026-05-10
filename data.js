@@ -1,11 +1,78 @@
-// ── DATA ──────────────────────────────────────────────────────────────────────
-//
-// All artists, topics, and quiz questions live here.
-// To add a new artist: copy an artist object and change its fields.
-// imagePlaceholder is a CSS color string used as a background block;
-// replace it with an img src attribute when real photos are available.
-
-const APP_DATA = {
+/**
+ * Shared quiz bank when a topic has no `quiz` (or fewer than 5 items) and the series has no `quiz`.
+ * Adapted from project 1 legacy bank; aligned to thematic / medium-agnostic prompts.
+ */
+export const LEGACY_QUIZ_QUESTIONS = [
+  {
+    question:
+      "A contemporary photograph restages a Madonna or saint. What is the most useful first question to ask?",
+    options: [
+      "Who is allowed to look—and who is framed as worthy of being seen?",
+      "Whether the camera brand matches museum acquisition standards",
+      "Whether the scene is a literal, factual record of an event",
+    ],
+    correct: 0,
+    explanation:
+      "Sacred figures in recent lens-based work usually rework power in looking: who performs holiness, who consumes the image, and what the staging admits about belief.",
+    curatorNote:
+      "Let address and agency lead; technique almost always serves that argument rather than replacing it.",
+  },
+  {
+    question: "Why do curators often group women artists around themes instead of only by biography?",
+    options: [
+      "Shared problems of form, politics, and reception cut across individual life stories",
+      "Birth years alone explain how artworks produce meaning",
+      "Auction results are the primary tool for historical interpretation",
+    ],
+    correct: 0,
+    explanation:
+      "Thematic study keeps attention on how strategies travel—material choices, refusal, care, scale—without reducing artists to a single identity category.",
+    curatorNote:
+      "A good theme names a pressure the works answer, not a box the artists are filed into.",
+  },
+  {
+    question: "An artist scrapes paint back to earlier layers. That gesture most often signals:",
+    options: [
+      "Memory and doubt can live in what the surface refuses to show",
+      "The work is primarily about correcting a technical mistake",
+      "Faster production is the main conceptual point",
+    ],
+    correct: 0,
+    explanation:
+      "Erasure and pentimento make time visible: the painting argues with its own past rather than presenting a single finished illusion.",
+    curatorNote:
+      "Watch for what is withheld or reopened; absence is often as intentional as detail.",
+  },
+  {
+    question:
+      "In sculpture, a polished plane meets a deliberately rough break. That contrast asks you to notice:",
+    options: [
+      "Ethics of finish—what the maker smooths, reveals, or leaves risky to touch",
+      "Only the object’s weight in kilograms",
+      "Color trends in interior design",
+    ],
+    correct: 0,
+    explanation:
+      "How matter is persuaded into form is part of the content: polish can flatter power; rupture can invite care, warning, or honesty about labor.",
+    curatorNote:
+      "Let your body imagine walking around it—scale and touch are part of the meaning.",
+  },
+  {
+    question:
+      "In performance, a simple action is repeated until the room’s attention shifts. The repetition is doing conceptual work when:",
+    options: [
+      "Duration changes stakes—politeness, fatigue, or care become visible",
+      "The action is only decorative, with no change over time",
+      "The score is random noise with no relation to bodies present",
+    ],
+    correct: 0,
+    explanation:
+      "Time-based work often tests what an audience will grant: patience, discomfort, or shared responsibility becomes part of the form.",
+    curatorNote:
+      "Ask what changes between minute one and minute ten; the shift is usually the thesis.",
+  },
+];
+export const APP_DATA = {
   series: {
 
     photography: {
@@ -21,6 +88,8 @@ const APP_DATA = {
               id: "zanele_muholi",
               name: "Zanele Muholi",
               years: "b. 1972",
+              image: "images/artists/zanele_muholi.svg",
+              imageAlt: "Neutral placeholder tile for Zanele Muholi — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a2a",
               insight: "Muholi's self-portrait series Somnyama Ngonyama reclaims the Black gaze by manipulating exposure to hyperpigment their skin, turning the camera into an act of resistance.",
               keyWork: "Somnyama Ngonyama (2012–ongoing)",
@@ -30,6 +99,8 @@ const APP_DATA = {
               id: "nan_goldin",
               name: "Nan Goldin",
               years: "b. 1953",
+              image: "images/artists/nan_goldin.svg",
+              imageAlt: "Neutral placeholder tile for Nan Goldin — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3d2b2b",
               insight: "Goldin's The Ballad of Sexual Dependency is an intimate visual diary of her circle — capturing love, addiction, and violence with unflinching honesty in 1970s–80s New York.",
               keyWork: "The Ballad of Sexual Dependency (1986)",
@@ -39,6 +110,8 @@ const APP_DATA = {
               id: "carrie_mae_weems",
               name: "Carrie Mae Weems",
               years: "b. 1953",
+              image: "images/artists/carrie_mae_weems.svg",
+              imageAlt: "Neutral placeholder tile for Carrie Mae Weems — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a3a",
               insight: "Weems's Kitchen Table Series uses a single domestic setting to explore the complexity of Black women's lives — relationships, solitude, power, and joy — through staged narrative sequences.",
               keyWork: "Kitchen Table Series (1990)",
@@ -54,6 +127,8 @@ const APP_DATA = {
               id: "dorothea_lange",
               name: "Dorothea Lange",
               years: "1895–1965",
+              image: "images/artists/dorothea_lange.jpg",
+              imageAlt: "Black-and-white photograph (Migrant Mother): a weary mother rests her face on her hand; two children turn away from the camera.",
               imagePlaceholder: "#2d2d1e",
               insight: "Lange's Migrant Mother became the defining image of the Great Depression — a single photograph that galvanized public support for relief programs and changed how documentary photography was understood.",
               keyWork: "Migrant Mother (1936)",
@@ -63,6 +138,8 @@ const APP_DATA = {
               id: "susan_meiselas",
               name: "Susan Meiselas",
               years: "b. 1948",
+              image: "images/artists/susan_meiselas.svg",
+              imageAlt: "Neutral placeholder tile for Susan Meiselas — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1e2d1e",
               insight: "Meiselas embedded herself in the 1978–79 Nicaraguan revolution, creating images that blur the boundary between witness and participant — and raised lasting questions about photojournalistic ethics.",
               keyWork: "Nicaragua (1981)",
@@ -72,6 +149,8 @@ const APP_DATA = {
               id: "an_my_le",
               name: "An-My Lê",
               years: "b. 1960",
+              image: "images/artists/an_my_le.svg",
+              imageAlt: "Neutral placeholder tile for An-My Lê — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1e2535",
               insight: "Lê photographs military re-enactments and training exercises, using the gap between performance and reality to interrogate how America constructs and mythologizes war.",
               keyWork: "Small Wars (1999–2002)",
@@ -87,6 +166,9 @@ const APP_DATA = {
               id: "francesca_woodman",
               name: "Francesca Woodman",
               years: "1958–1981",
+              image: "images/artists/francesca_woodman.png",
+              imageAlt:
+                "Black-and-white self-portrait: figure hanging from a doorframe in a tiled room, arms raised.",
               imagePlaceholder: "#2a2020",
               insight: "Woodman made hundreds of photographs in decaying interiors, using slow shutter speeds to blur her own body into the architecture — exploring the female self as both present and dissolving.",
               keyWork: "House Series (1975–76)",
@@ -96,6 +178,9 @@ const APP_DATA = {
               id: "cindy_sherman",
               name: "Cindy Sherman",
               years: "b. 1954",
+              image: "images/artists/cindy_sherman.png",
+              imageAlt:
+                "Cindy Sherman in Renaissance Madonna costume with swaddled infant, lace and velvet backdrop.",
               imagePlaceholder: "#3a2a1a",
               insight: "Sherman's Untitled Film Stills features herself as every character — each photograph a constructed archetype drawn from cinema's visual language of femininity, never once depicting 'Cindy Sherman'.",
               keyWork: "Untitled Film Stills (1977–80)",
@@ -105,6 +190,8 @@ const APP_DATA = {
               id: "lorna_simpson",
               name: "Lorna Simpson",
               years: "b. 1960",
+              image: "images/artists/lorna_simpson.svg",
+              imageAlt: "Neutral placeholder tile for Lorna Simpson — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Simpson pairs photographs of Black women's bodies with fragmented text, refusing the viewer's gaze by showing subjects from behind — insisting on interiority over spectacle.",
               keyWork: "Waterbearer (1986)",
@@ -185,6 +272,8 @@ const APP_DATA = {
               id: "helen_frankenthaler",
               name: "Helen Frankenthaler",
               years: "1928–2011",
+              image: "images/artists/helen_frankenthaler.svg",
+              imageAlt: "Neutral placeholder tile for Helen Frankenthaler — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a3a",
               insight: "Frankenthaler poured thinned paint directly onto unprimed canvas, inventing the soak-stain technique that defined Color Field painting. Her landmark Mountains and Sea transformed how a generation approached abstraction.",
               keyWork: "Mountains and Sea (1952)",
@@ -194,6 +283,8 @@ const APP_DATA = {
               id: "agnes_martin",
               name: "Agnes Martin",
               years: "1912–2004",
+              image: "images/artists/agnes_martin.svg",
+              imageAlt: "Neutral placeholder tile for Agnes Martin — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#dcdcd4",
               insight: "Martin's soft pencil grids on pale linen canvases are not cold minimalism but expressions of happiness and innocence — she described them as 'about beauty, and it's a simple subject.'",
               keyWork: "Untitled #1 (1988)",
@@ -203,6 +294,8 @@ const APP_DATA = {
               id: "lee_krasner",
               name: "Lee Krasner",
               years: "1908–1984",
+              image: "images/artists/lee_krasner.svg",
+              imageAlt: "Neutral placeholder tile for Lee Krasner — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3a2a1a",
               insight: "Long overshadowed by her husband Jackson Pollock, Krasner's large-scale Abstract Expressionist works — including the collaged Night Journeys series made after his death — are now recognized as central to the movement.",
               keyWork: "The Seasons (1957)",
@@ -218,6 +311,8 @@ const APP_DATA = {
               id: "alice_neel",
               name: "Alice Neel",
               years: "1900–1984",
+              image: "images/artists/alice_neel.svg",
+              imageAlt: "Neutral placeholder tile for Alice Neel — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1e3a2a",
               insight: "Neel painted the people mainstream art ignored: working-class New Yorkers, Black and Latino neighbors, pregnant women, and gay men — creating a radical portrait of 20th-century American life from the margins.",
               keyWork: "Andy Warhol (1970)",
@@ -227,6 +322,8 @@ const APP_DATA = {
               id: "jenny_saville",
               name: "Jenny Saville",
               years: "b. 1970",
+              image: "images/artists/jenny_saville.svg",
+              imageAlt: "Neutral placeholder tile for Jenny Saville — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3a1a1a",
               insight: "Saville paints the female body at monumental scale and from unconventional vantage points — looking down at flesh that overflows the frame — refusing the idealizing traditions of the nude.",
               keyWork: "Propped (1992)",
@@ -236,6 +333,8 @@ const APP_DATA = {
               id: "lynette_yiadom_boakye",
               name: "Lynette Yiadom-Boakye",
               years: "b. 1977",
+              image: "images/artists/lynette_yiadom_boakye.svg",
+              imageAlt: "Neutral placeholder tile for Lynette Yiadom-Boakye — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Yiadom-Boakye paints fictional Black figures, composing them from imagination rather than life or reference. Her subjects suggest interiority without disclosure — neither portraits nor allegories.",
               keyWork: "Any Number of Preoccupations (2010)",
@@ -251,6 +350,8 @@ const APP_DATA = {
               id: "faith_ringgold",
               name: "Faith Ringgold",
               years: "b. 1930",
+              image: "images/artists/faith_ringgold.svg",
+              imageAlt: "Neutral placeholder tile for Faith Ringgold — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Ringgold's story quilts merge West African textile tradition with American quilt-making and narrative text — using a domestic craft historically associated with Black women to tell stories that museums once refused to exhibit.",
               keyWork: "Tar Beach (1988)",
@@ -260,6 +361,8 @@ const APP_DATA = {
               id: "kara_walker",
               name: "Kara Walker",
               years: "b. 1969",
+              image: "images/artists/kara_walker.svg",
+              imageAlt: "Neutral placeholder tile for Kara Walker — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#0a0a0a",
               insight: "Walker's large-scale black silhouettes stage grotesque tableaux of slavery's violence and sexual exploitation — using a genteel 19th-century art form to force confrontation with histories Americans prefer to obscure.",
               keyWork: "A Subtlety (2014)",
@@ -269,6 +372,8 @@ const APP_DATA = {
               id: "cecily_brown",
               name: "Cecily Brown",
               years: "b. 1969",
+              image: "images/artists/cecily_brown.svg",
+              imageAlt: "Neutral placeholder tile for Cecily Brown — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Brown's densely layered paintings hover between figuration and abstraction — bodies, landscapes, and violence blur together in surfaces that reward sustained looking and resist easy resolution.",
               keyWork: "Horizontale (2003)",
@@ -349,6 +454,8 @@ const APP_DATA = {
               id: "louise_bourgeois",
               name: "Louise Bourgeois",
               years: "1911–2010",
+              image: "images/artists/louise_bourgeois.svg",
+              imageAlt: "Neutral placeholder tile for Louise Bourgeois — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Bourgeois spent seven decades making art about the body, memory, and family. Her giant spider sculptures Maman represent her mother — described as patient, protective, and industrious as a weaver.",
               keyWork: "Maman (1999)",
@@ -358,6 +465,8 @@ const APP_DATA = {
               id: "kiki_smith",
               name: "Kiki Smith",
               years: "b. 1954",
+              image: "images/artists/kiki_smith.svg",
+              imageAlt: "Neutral placeholder tile for Kiki Smith — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a1a",
               insight: "Smith makes the interior of the body visible — casting organs, trailing viscera, depicting bodily processes that culture renders taboo. Tale features a female figure crawling, with a long tail behind her.",
               keyWork: "Tale (1992)",
@@ -367,6 +476,8 @@ const APP_DATA = {
               id: "sarah_lucas",
               name: "Sarah Lucas",
               years: "b. 1962",
+              image: "images/artists/sarah_lucas.svg",
+              imageAlt: "Neutral placeholder tile for Sarah Lucas — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Lucas's sculptures use everyday objects — mattresses, toilets, fried eggs, cigarettes — to deconstruct the sexual objectification of women through crude, sardonic wit rather than earnest protest.",
               keyWork: "Au Naturel (1994)",
@@ -382,6 +493,8 @@ const APP_DATA = {
               id: "rachel_whiteread",
               name: "Rachel Whiteread",
               years: "b. 1963",
+              image: "images/artists/rachel_whiteread.svg",
+              imageAlt: "Neutral placeholder tile for Rachel Whiteread — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#d0c8b8",
               insight: "Whiteread casts the negative space inside and around ordinary objects — the air under a chair, the inside of a room — making invisible domestic space tangible and monumental.",
               keyWork: "Ghost (1990)",
@@ -391,6 +504,8 @@ const APP_DATA = {
               id: "maya_lin",
               name: "Maya Lin",
               years: "b. 1959",
+              image: "images/artists/maya_lin.svg",
+              imageAlt: "Neutral placeholder tile for Maya Lin — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Lin's Vietnam Veterans Memorial refuses heroic imagery entirely — a black granite chevron cut into the earth, listing 58,000 names. Visitors see their own reflection in the names of the dead.",
               keyWork: "Vietnam Veterans Memorial (1982)",
@@ -400,6 +515,8 @@ const APP_DATA = {
               id: "ursula_von_rydingsvard",
               name: "Ursula von Rydingsvard",
               years: "b. 1942",
+              image: "images/artists/ursula_von_rydingsvard.svg",
+              imageAlt: "Neutral placeholder tile for Ursula von Rydingsvard — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3a2a1a",
               insight: "Von Rydingsvard builds massive sculptures from thousands of cedar beams, cutting and gouging them with chainsaws and chisels to create surfaces that resemble eroded landscape or interior organs.",
               keyWork: "For Paul (1992)",
@@ -415,6 +532,8 @@ const APP_DATA = {
               id: "eva_hesse",
               name: "Eva Hesse",
               years: "1936–1970",
+              image: "images/artists/eva_hesse.svg",
+              imageAlt: "Neutral placeholder tile for Eva Hesse — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#c8b89a",
               insight: "Hesse transformed Post-Minimalism by introducing latex, rope, and fiberglass — organic, unstable materials that sag, droop, and decay. Her work insists on the absurd and the bodily within geometric form.",
               keyWork: "Hang Up (1966)",
@@ -424,6 +543,8 @@ const APP_DATA = {
               id: "el_anatsui",
               name: "El Anatsui",
               years: "b. 1944",
+              image: "images/artists/el_anatsui.svg",
+              imageAlt: "Neutral placeholder tile for El Anatsui — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#8a6a2a",
               insight: "Anatsui creates large-scale tapestry-like sculptures from thousands of flattened bottle caps and aluminum foil, referencing both African kente cloth and the global trade routes that brought alcohol to West Africa.",
               keyWork: "Dusasa I (2007)",
@@ -433,6 +554,8 @@ const APP_DATA = {
               id: "simone_leigh",
               name: "Simone Leigh",
               years: "b. 1967",
+              image: "images/artists/simone_leigh.svg",
+              imageAlt: "Neutral placeholder tile for Simone Leigh — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#5a3a2a",
               insight: "Leigh merges the female figure with architectural forms drawn from African vernacular buildings — thatched roofs, granaries, jugs. Brick House rose four stories as the US Pavilion centerpiece at Venice 2022.",
               keyWork: "Brick House (2019)",
@@ -513,6 +636,8 @@ const APP_DATA = {
               id: "marina_abramovic",
               name: "Marina Abramović",
               years: "b. 1946",
+              image: "images/artists/marina_abramovic.svg",
+              imageAlt: "Neutral placeholder tile for Marina Abramović — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a1a",
               insight: "Abramović's The Artist is Present placed her silently opposite museum visitors for 736 hours — testing the limits of presence, endurance, and what it means to truly see and be seen by another person.",
               keyWork: "The Artist is Present (2010)",
@@ -522,6 +647,8 @@ const APP_DATA = {
               id: "yoko_ono",
               name: "Yoko Ono",
               years: "b. 1933",
+              image: "images/artists/yoko_ono.svg",
+              imageAlt: "Neutral placeholder tile for Yoko Ono — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a2a",
               insight: "Cut Piece invited audience members to cut away Ono's clothing with scissors — transferring agency to the viewer and exposing the violence latent in looking, long before this language entered mainstream feminist theory.",
               keyWork: "Cut Piece (1964)",
@@ -531,6 +658,8 @@ const APP_DATA = {
               id: "ana_mendieta",
               name: "Ana Mendieta",
               years: "1948–1985",
+              image: "images/artists/ana_mendieta.svg",
+              imageAlt: "Neutral placeholder tile for Ana Mendieta — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Mendieta's Silueta Series documented her imprinting her body's outline into earth, sand, and natural materials — merging the female form with landscape as a search for belonging between her Cuban heritage and American exile.",
               keyWork: "Silueta Series (1973–80)",
@@ -546,6 +675,8 @@ const APP_DATA = {
               id: "tehching_hsieh",
               name: "Tehching Hsieh",
               years: "b. 1950",
+              image: "images/artists/tehching_hsieh.svg",
+              imageAlt: "Neutral placeholder tile for Tehching Hsieh — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Hsieh's One Year Performances subjected his body to extreme constraints for exactly 365 days — punching a time clock every hour, living outdoors, never entering buildings. Art as a record of time itself.",
               keyWork: "One Year Performance (1980–81)",
@@ -555,6 +686,8 @@ const APP_DATA = {
               id: "adrian_piper",
               name: "Adrian Piper",
               years: "b. 1948",
+              image: "images/artists/adrian_piper.svg",
+              imageAlt: "Neutral placeholder tile for Adrian Piper — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Piper's Catalysis performances took place in public — she rode the subway smelling of vinegar, or wore a sign reading 'Wet Paint' — inserting discomfort into everyday space to expose social codes governing public behavior.",
               keyWork: "Catalysis (1970–71)",
@@ -564,6 +697,8 @@ const APP_DATA = {
               id: "carolee_schneemann",
               name: "Carolee Schneemann",
               years: "1939–2019",
+              image: "images/artists/carolee_schneemann.svg",
+              imageAlt: "Neutral placeholder tile for Carolee Schneemann — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a1a",
               insight: "Schneemann's Interior Scroll involved drawing a text from her vagina and reading it aloud — directly asserting the female body as a site of intellectual and creative authority against the erasure of women's voices.",
               keyWork: "Interior Scroll (1975)",
@@ -579,6 +714,8 @@ const APP_DATA = {
               id: "coco_fusco",
               name: "Coco Fusco",
               years: "b. 1960",
+              image: "images/artists/coco_fusco.svg",
+              imageAlt: "Neutral placeholder tile for Coco Fusco — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Fusco and Guillermo Gómez-Peña spent three days in a cage at the 1992 Columbus quincentennial, posing as 'undiscovered Amerindians' — exposing how Western institutions had always displayed colonised bodies as spectacle.",
               keyWork: "Two Undiscovered Amerindians (1992)",
@@ -588,6 +725,8 @@ const APP_DATA = {
               id: "lorraine_ogrady",
               name: "Lorraine O'Grady",
               years: "b. 1934",
+              image: "images/artists/lorraine_ogrady.svg",
+              imageAlt: "Neutral placeholder tile for Lorraine O'Grady — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a1a",
               insight: "O'Grady's Mlle Bourgeoise Noire crashed white art world openings wearing a gown made of white gloves, flogging herself and demanding: 'Black art must take more risks!' — a direct confrontation with institutional exclusion.",
               keyWork: "Mlle Bourgeoise Noire (1980–83)",
@@ -597,6 +736,8 @@ const APP_DATA = {
               id: "pope_l",
               name: "Pope.L",
               years: "b. 1955",
+              image: "images/artists/pope_l.svg",
+              imageAlt: "Neutral placeholder tile for Pope.L — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a2a",
               insight: "Pope.L's crawl performances — including a 22-mile crawl the length of Broadway — use abjection and endurance to excavate race, poverty, and public space, asking who has the right to occupy a city's streets.",
               keyWork: "The Great White Way (2000–09)",
@@ -677,6 +818,8 @@ const APP_DATA = {
               id: "joan_jonas",
               name: "Joan Jonas",
               years: "b. 1936",
+              image: "images/artists/joan_jonas.svg",
+              imageAlt: "Neutral placeholder tile for Joan Jonas — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Jonas was among the first artists to use video as a live feedback tool, incorporating mirrors, masks, and live monitors into performances where image and body deliberately desynchronize. Her Vertical Roll (1972) exploits a TV's rolling malfunction as a rhythmic, hypnotic device.",
               keyWork: "Vertical Roll (1972)",
@@ -686,6 +829,8 @@ const APP_DATA = {
               id: "ulrike_rosenbach",
               name: "Ulrike Rosenbach",
               years: "b. 1943",
+              image: "images/artists/ulrike_rosenbach.svg",
+              imageAlt: "Neutral placeholder tile for Ulrike Rosenbach — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Rosenbach overlaid live video of her own face onto art-historical images of the Madonna, forcing confrontation between representations of women in Christian iconography and the living female body performing in real time.",
               keyWork: "Don't Believe I Am an Amazon (1975)",
@@ -695,10 +840,74 @@ const APP_DATA = {
               id: "shigeko_kubota",
               name: "Shigeko Kubota",
               years: "1937–2015",
+              image: "images/artists/shigeko_kubota.svg",
+              imageAlt: "Neutral placeholder tile for Shigeko Kubota — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a2a",
               insight: "Kubota built sculptural furniture and objects containing embedded monitors — her Duchampiana series enclosed video footage inside a physical staircase, forcing the viewer to move through the work rather than simply watch it.",
               keyWork: "Duchampiana: Nude Descending a Staircase (1975–76)",
               movement: "Video Sculpture"
+            }
+          ],
+          quiz: [
+            {
+              question: "Joan Jonas's Vertical Roll (1972) uses what device as its central visual element?",
+              options: [
+                "A camera mounted on a rotating platform",
+                "A TV monitor's rolling malfunction exploited as rhythmic repetition",
+                "A vertical split screen dividing two simultaneous performances",
+                "A scrolling text feed overlaid on footage of her body"
+              ],
+              correct: 1,
+              explanation: "Jonas deliberately induced and sustained the rolling glitch in a television monitor, turning a technical failure into a hypnotic pulse — one of the earliest instances of an artist using video's own malfunctions as expressive material.",
+              curatorNote: "Technical 'failure' in early video often becomes the work's pulse—notice when the medium, not just the scene, is the subject."
+            },
+            {
+              question: "Dara Birnbaum's Technology/Transformation: Wonder Woman isolates which specific moment from the TV series, and to what end?",
+              options: [
+                "The final fight scene, to critique representations of female violence",
+                "The transformation sequence, to expose how television packages female power as spectacle",
+                "The opening credits, to analyze how music shapes viewer identification",
+                "Close-ups of the villain, to examine how broadcast TV constructs villainy"
+              ],
+              correct: 1,
+              explanation: "By looping the pyrotechnic transformation moment continuously, Birnbaum strips it of narrative context — revealing it as pure spectacular image-commodity, a fantasy of women's strength sold back to female audiences.",
+              curatorNote: "Looping one broadcast moment turns plot into pattern—ask what the loop hides and what it sells."
+            },
+            {
+              question: "Pipilotti Rist's video installations characteristically project onto which surfaces, and why does this matter?",
+              options: [
+                "Onto white gallery walls, to reference the history of cinema projection",
+                "Onto floors and ceilings, immersing viewers inside the image rather than facing it",
+                "Onto water in outdoor pools, to link video with natural phenomena",
+                "Onto the bodies of live performers, to merge human and digital form"
+              ],
+              correct: 1,
+              explanation: "Projecting beneath and above the viewer collapses the conventional distance between artwork and audience — viewers become part of the color field, unable to adopt the detached frontal position of traditional spectatorship.",
+              curatorNote: "Where the image lands in the room is part of the argument—ceiling and floor refuse the neutral 'cinema wall'."
+            },
+            {
+              question: "Hito Steyerl's essay film How Not to Be Seen treats which technical phenomena as political material?",
+              options: [
+                "High-definition resolution and color grading",
+                "Image compression, file formats, and resolution degradation",
+                "Satellite transmission delays and time-zone displacement",
+                "Facial recognition software and biometric databases"
+              ],
+              correct: 1,
+              explanation: "Steyerl argues that poor-resolution images — jpegs, pixelated uploads, compressed files — circulate more freely than high-definition ones. Degradation becomes a mode of survival, invisibility, and escape from surveillance.",
+              curatorNote: "Poor images travel differently than pristine ones—compression and format are part of power, not just aesthetics."
+            },
+            {
+              question: "Eija-Liisa Ahtila's multi-screen works require viewers to do what, and what effect does this produce?",
+              options: [
+                "Wear headphones tuned to different audio channels, creating private listening experiences",
+                "Move between multiple projections to assemble a narrative distributed across space",
+                "Lie on the floor to see the image correctly, making the body part of the work",
+                "Choose one screen and ignore the others, forcing selective attention"
+              ],
+              correct: 1,
+              explanation: "By splitting a single narrative across synchronized screens, Ahtila spatializes storytelling — the viewer's movement through the room becomes part of how meaning is constructed, refusing the fixed position of cinema spectatorship.",
+              curatorNote: "Multi-screen narrative makes your path through space part of the edit—there is no single 'correct' seat."
             }
           ]
         },
@@ -710,6 +919,8 @@ const APP_DATA = {
               id: "dara_birnbaum",
               name: "Dara Birnbaum",
               years: "b. 1946",
+              image: "images/artists/dara_birnbaum.svg",
+              imageAlt: "Neutral placeholder tile for Dara Birnbaum — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Technology/Transformation: Wonder Woman looped the transformation sequence from the TV series, isolating the pyrotechnic spectacle of female power to expose how broadcast television packages and sells a fantasy of women's strength.",
               keyWork: "Technology/Transformation: Wonder Woman (1978–79)",
@@ -719,6 +930,8 @@ const APP_DATA = {
               id: "sadie_benning",
               name: "Sadie Benning",
               years: "b. 1973",
+              image: "images/artists/sadie_benning.svg",
+              imageAlt: "Neutral placeholder tile for Sadie Benning — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a1a",
               insight: "Benning made confessional diary videos as a teenager using a Fisher-Price PXL 2000 toy camera — the deliberately degraded pixelvision image becoming inseparable from the rawness of coming out as a queer teenager in Wisconsin.",
               keyWork: "It Wasn't Love (1992)",
@@ -728,6 +941,8 @@ const APP_DATA = {
               id: "amal_kenawy",
               name: "Amal Kenawy",
               years: "1974–2012",
+              image: "images/artists/amal_kenawy.svg",
+              imageAlt: "Neutral placeholder tile for Amal Kenawy — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a1a",
               insight: "Kenawy's videos fused performance, choreography, and surrealist imagery to address political repression and bodily constraint in Egypt — Silence of the Lambs staged dozens of crawling figures in Cairo's streets as an uninvited public intervention.",
               keyWork: "Silence of the Lambs (2010)",
@@ -743,6 +958,8 @@ const APP_DATA = {
               id: "pipilotti_rist",
               name: "Pipilotti Rist",
               years: "b. 1962",
+              image: "images/artists/pipilotti_rist.svg",
+              imageAlt: "Neutral placeholder tile for Pipilotti Rist — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Rist projects large-scale video onto floors and ceilings rather than walls, immersing viewers inside lush, distorted color fields — Ever Is Over All shows her smashing car windows with a flower while a police officer smiles in approval.",
               keyWork: "Ever Is Over All (1997)",
@@ -752,6 +969,8 @@ const APP_DATA = {
               id: "hito_steyerl",
               name: "Hito Steyerl",
               years: "b. 1966",
+              image: "images/artists/hito_steyerl.svg",
+              imageAlt: "Neutral placeholder tile for Hito Steyerl — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#0a1a2a",
               insight: "Steyerl's essay films treat resolution, compression artifacts, and file formats as political material — How Not to Be Seen: A Fucking Didactic Educational .MOV File uses the logic of surveillance and image degradation to examine visibility and erasure.",
               keyWork: "How Not to Be Seen (2013)",
@@ -761,6 +980,8 @@ const APP_DATA = {
               id: "eija_liisa_ahtila",
               name: "Eija-Liisa Ahtila",
               years: "b. 1959",
+              image: "images/artists/eija_liisa_ahtila.svg",
+              imageAlt: "Neutral placeholder tile for Eija-Liisa Ahtila — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Ahtila presents narrative across multiple synchronized screens, fragmenting a single story in space so that viewers must move between projections to assemble meaning — Anne, Aki and God uses three screens to depict psychosis from inside the experience.",
               keyWork: "Anne, Aki and God (1998)",
@@ -768,522 +989,39 @@ const APP_DATA = {
             }
           ]
         }
-      },
-      quiz: [
-        {
-          question: "Joan Jonas's Vertical Roll (1972) uses what device as its central visual element?",
-          options: [
-            "A camera mounted on a rotating platform",
-            "A TV monitor's rolling malfunction exploited as rhythmic repetition",
-            "A vertical split screen dividing two simultaneous performances",
-            "A scrolling text feed overlaid on footage of her body"
-          ],
-          correct: 1,
-          explanation: "Jonas deliberately induced and sustained the rolling glitch in a television monitor, turning a technical failure into a hypnotic pulse — one of the earliest instances of an artist using video's own malfunctions as expressive material."
-        },
-        {
-          question: "Dara Birnbaum's Technology/Transformation: Wonder Woman isolates which specific moment from the TV series, and to what end?",
-          options: [
-            "The final fight scene, to critique representations of female violence",
-            "The transformation sequence, to expose how television packages female power as spectacle",
-            "The opening credits, to analyze how music shapes viewer identification",
-            "Close-ups of the villain, to examine how broadcast TV constructs villainy"
-          ],
-          correct: 1,
-          explanation: "By looping the pyrotechnic transformation moment continuously, Birnbaum strips it of narrative context — revealing it as pure spectacular image-commodity, a fantasy of women's strength sold back to female audiences."
-        },
-        {
-          question: "Pipilotti Rist's video installations characteristically project onto which surfaces, and why does this matter?",
-          options: [
-            "Onto white gallery walls, to reference the history of cinema projection",
-            "Onto floors and ceilings, immersing viewers inside the image rather than facing it",
-            "Onto water in outdoor pools, to link video with natural phenomena",
-            "Onto the bodies of live performers, to merge human and digital form"
-          ],
-          correct: 1,
-          explanation: "Projecting beneath and above the viewer collapses the conventional distance between artwork and audience — viewers become part of the color field, unable to adopt the detached frontal position of traditional spectatorship."
-        },
-        {
-          question: "Hito Steyerl's essay film How Not to Be Seen treats which technical phenomena as political material?",
-          options: [
-            "High-definition resolution and color grading",
-            "Image compression, file formats, and resolution degradation",
-            "Satellite transmission delays and time-zone displacement",
-            "Facial recognition software and biometric databases"
-          ],
-          correct: 1,
-          explanation: "Steyerl argues that poor-resolution images — jpegs, pixelated uploads, compressed files — circulate more freely than high-definition ones. Degradation becomes a mode of survival, invisibility, and escape from surveillance."
-        },
-        {
-          question: "Eija-Liisa Ahtila's multi-screen works require viewers to do what, and what effect does this produce?",
-          options: [
-            "Wear headphones tuned to different audio channels, creating private listening experiences",
-            "Move between multiple projections to assemble a narrative distributed across space",
-            "Lie on the floor to see the image correctly, making the body part of the work",
-            "Choose one screen and ignore the others, forcing selective attention"
-          ],
-          correct: 1,
-          explanation: "By splitting a single narrative across synchronized screens, Ahtila spatializes storytelling — the viewer's movement through the room becomes part of how meaning is constructed, refusing the fixed position of cinema spectatorship."
-        }
-      ]
+      }
     }
 
   }
 };
 
+function normalizeQuestion(q) {
+  return {
+    question: q.question,
+    options: q.options,
+    correct: q.correct,
+    explanation: q.explanation,
+    curatorNote: q.curatorNote || q.explanation,
+  };
+}
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
-//
-// Single object that tracks where the user is and what they've done.
-// Never modify state directly outside of navigate() — use state.xyz = value
-// only inside the navigation and answer handlers.
-
-const state = {
-  currentScreen: "landing",   // which screen is visible
-  selectedSeries: null,       // e.g. "photography"
-  selectedTopic: null,        // e.g. "identity"
-  quiz: {
-    currentQuestion: 0,       // index 0–4
-    answers: []               // array of chosen option indices; grows as user answers
-  },
-  favorites: {}               // { artistId: true } — loaded from localStorage on init
-};
-
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-
-// Read saved favorites from the browser. Falls back to {} if nothing is stored
-// or if the stored value is somehow corrupted.
-function initFavorites() {
-  try {
-    state.favorites = JSON.parse(localStorage.getItem("wia_favorites") || "{}");
-  } catch (e) {
-    state.favorites = {};
+/**
+ * Active bank: topic `quiz` if exactly 5 items, else series `quiz` if exactly 5, else LEGACY_QUIZ_QUESTIONS.
+ */
+export function getQuizQuestions(seriesId, topicId) {
+  const series = APP_DATA.series[seriesId];
+  const topic = series.topics[topicId];
+  const tq = topic.quiz;
+  if (Array.isArray(tq) && tq.length === 5) {
+    return tq.map(normalizeQuestion);
   }
-}
-
-// Write the current favorites object back to the browser.
-function saveFavorites() {
-  localStorage.setItem("wia_favorites", JSON.stringify(state.favorites));
-}
-
-// Entry point — called once when the page loads.
-function init() {
-  initFavorites();
-  navigate("landing");
-}
-
-
-// ── NAVIGATION ────────────────────────────────────────────────────────────────
-//
-// navigate() is the only function that should change screens.
-// Pass the screen name and optionally a payload object with extra context.
-
-function navigate(screen, payload = {}) {
-  // Update state based on where we're going
-  if (screen === "series-select") {
-    state.selectedSeries = null;
-    state.selectedTopic = null;
+  const sq = series.quiz;
+  if (Array.isArray(sq) && sq.length === 5) {
+    return sq.map(normalizeQuestion);
   }
-
-  if (screen === "topic-select") {
-    // Set series (from click) or keep existing (from quiz back button)
-    if (payload.series) state.selectedSeries = payload.series;
-
-    // Default to first topic if entering a new series or topic isn't set
-    const topicKeys = Object.keys(APP_DATA.series[state.selectedSeries].topics);
-    if (!state.selectedTopic || payload.series) {
-      state.selectedTopic = topicKeys[0];
-    }
-  }
-
-  if (screen === "quiz") {
-    // Always reset quiz progress when starting or retrying
-    state.quiz = { currentQuestion: 0, answers: [] };
-  }
-
-  state.currentScreen = screen;
-  renderScreen();
+  return LEGACY_QUIZ_QUESTIONS.map(normalizeQuestion);
 }
 
-// Hide all screens, show the current one, then call the right render function.
-function renderScreen() {
-  document.querySelectorAll(".screen").forEach(el => el.classList.remove("active"));
-  document.getElementById("screen-" + state.currentScreen).classList.add("active");
-
-  if (state.currentScreen === "landing")       renderLanding();
-  if (state.currentScreen === "series-select") renderSeriesSelect();
-  if (state.currentScreen === "topic-select")  renderTopicSelect();
-  if (state.currentScreen === "quiz")          renderQuiz();
-  if (state.currentScreen === "result")        renderResult();
-
-  // Move focus to the new screen's heading so keyboard/screen-reader users
-  // land in the right place after every navigation.
-  focusScreen();
+export function quizQuestionCount(seriesId, topicId) {
+  return getQuizQuestions(seriesId, topicId).length;
 }
-
-// Focus the first heading in the active screen without adding it to tab order.
-function focusScreen() {
-  const screen  = document.getElementById("screen-" + state.currentScreen);
-  const heading = screen.querySelector("h1, h2");
-  if (heading) {
-    heading.setAttribute("tabindex", "-1");
-    heading.focus({ preventScroll: false });
-  }
-}
-
-
-// ── RENDER: LANDING ───────────────────────────────────────────────────────────
-
-function renderLanding() {
-  const screen = document.getElementById("screen-landing");
-  clearElement(screen);
-
-  const label   = createElement("p", "landing-label", "An interactive collection");
-  const title   = createElement("h1", "landing-title", "Women in Contemporary Art");
-  const tagline = createElement("p", "landing-tagline",
-    "Explore the artists redefining the canon — through four disciplines, twelve topics, and 36 artists shaping art today.");
-  const btn = createElement("button", "btn btn-filled", "Begin");
-
-  btn.addEventListener("click", () => navigate("series-select"));
-
-  screen.appendChild(label);
-  screen.appendChild(title);
-  screen.appendChild(tagline);
-  screen.appendChild(btn);
-}
-
-
-// ── RENDER: SERIES SELECT ─────────────────────────────────────────────────────
-
-function renderSeriesSelect() {
-  // Header
-  const header = document.getElementById("series-header");
-  clearElement(header);
-  const h2      = createElement("h2", "", "Choose a Series");
-  const backBtn = createElement("button", "btn-back", "← Back");
-  backBtn.addEventListener("click", () => navigate("landing"));
-  header.appendChild(h2);
-  header.appendChild(backBtn);
-
-  // Cards grid
-  const grid = document.getElementById("series-grid");
-  clearElement(grid);
-
-  Object.values(APP_DATA.series).forEach(series => {
-    const card  = createElement("button", "series-card");
-    const icon  = createElement("span", "series-icon", series.icon);
-    const label = createElement("span", "series-label", series.label);
-    card.appendChild(icon);
-    card.appendChild(label);
-    card.addEventListener("click", () => navigate("topic-select", { series: series.id }));
-    grid.appendChild(card);
-  });
-}
-
-
-// ── RENDER: TOPIC SELECT ──────────────────────────────────────────────────────
-
-function renderTopicSelect() {
-  const series = APP_DATA.series[state.selectedSeries];
-
-  // Header
-  const header = document.getElementById("topic-header");
-  clearElement(header);
-  const h2      = createElement("h2", "", series.label);
-  const backBtn = createElement("button", "btn-back", "← All Series");
-  backBtn.addEventListener("click", () => navigate("series-select"));
-  header.appendChild(h2);
-  header.appendChild(backBtn);
-
-  renderTopicTabs();
-  renderArtistCards();
-}
-
-// Renders the three topic tabs + the "Take Quiz" button on the right.
-function renderTopicTabs() {
-  const series = APP_DATA.series[state.selectedSeries];
-  const tabs   = document.getElementById("topic-tabs");
-  clearElement(tabs);
-
-  Object.values(series.topics).forEach(topic => {
-    const tab = createElement("button", "topic-tab", topic.label);
-    if (topic.id === state.selectedTopic) tab.classList.add("active");
-
-    tab.addEventListener("click", () => {
-      state.selectedTopic = topic.id;
-      renderTopicTabs();      // re-render tabs to update active state
-      renderArtistCards();    // re-render cards for the new topic
-    });
-
-    tabs.appendChild(tab);
-  });
-
-  // Quiz launch button — pushed to the right by CSS margin-left: auto
-  const quizBtn = createElement("button", "btn topic-quiz-btn", "Take Quiz →");
-  quizBtn.addEventListener("click", () => navigate("quiz"));
-  tabs.appendChild(quizBtn);
-}
-
-// Clears the grid and renders artist cards for the currently selected topic.
-function renderArtistCards() {
-  const grid    = document.getElementById("artist-grid");
-  clearElement(grid);
-
-  const artists = getArtistsByTopic(state.selectedSeries, state.selectedTopic);
-  artists.forEach(artist => grid.appendChild(createArtistCard(artist)));
-}
-
-// Builds and returns a single flip card DOM element for one artist.
-function createArtistCard(artist) {
-  // .card-scene is the outer wrapper — sets perspective and holds the heart button.
-  // The heart sits here (not inside .card) so it never rotates during the flip.
-  const scene = createElement("div", "card-scene");
-
-  // .card is the element that actually rotates when .is-flipped is toggled
-  const card = createElement("div", "card");
-
-  // Front face ──────────────────────────────────
-  const front = createElement("div", "card-front");
-
-  const image = createElement("div", "card-image");
-  image.style.backgroundColor = artist.imagePlaceholder;
-
-  front.appendChild(image);
-  front.appendChild(createElement("h3", "card-name", artist.name));
-  front.appendChild(createElement("p", "card-years", artist.years));
-
-  // Back face ───────────────────────────────────
-  const back = createElement("div", "card-back");
-
-  const meta = createElement("div", "card-meta");
-  // innerHTML is safe here — all values come from our own data object, not user input
-  meta.innerHTML = "<strong>" + artist.keyWork + "</strong><br>" + artist.movement;
-
-  back.appendChild(createElement("p", "card-back-label", "Artist Insight"));
-  back.appendChild(createElement("p", "card-insight", artist.insight));
-  back.appendChild(meta);
-
-  // Assemble
-  card.appendChild(front);
-  card.appendChild(back);
-  scene.appendChild(card);
-
-  // Keyboard + click flip
-  card.setAttribute("tabindex", "0");
-  card.setAttribute("role", "button");
-  card.setAttribute("aria-pressed", "false");
-  card.setAttribute("aria-label", "Learn about " + artist.name + ". Activate to read insight.");
-
-  card.addEventListener("click", () => {
-    const flipped = card.classList.toggle("is-flipped");
-    card.setAttribute("aria-pressed", String(flipped));
-    card.setAttribute("aria-label", flipped
-      ? "Showing insight for " + artist.name + ". Activate to flip back."
-      : "Learn about " + artist.name + ". Activate to read insight.");
-  });
-
-  card.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      card.click();
-    }
-  });
-
-  // Heart (favorites) button ────────────────────
-  const heart = createElement("button", "heart-btn", "♥");
-  const isFav = !!state.favorites[artist.id];
-
-  heart.setAttribute("aria-label",
-    (isFav ? "Remove " : "Add ") + artist.name + " from favorites");
-  if (isFav) heart.classList.add("is-favorited");
-
-  heart.addEventListener("click", () => {
-    // toggleFavorite returns the new state (true = now favorited)
-    const nowFav = toggleFavorite(artist.id);
-    heart.classList.toggle("is-favorited", nowFav);
-    heart.setAttribute("aria-label",
-      (nowFav ? "Remove " : "Add ") + artist.name + " from favorites");
-  });
-
-  scene.appendChild(heart);
-  return scene;
-}
-
-
-// ── RENDER: QUIZ ──────────────────────────────────────────────────────────────
-
-function renderQuiz() {
-  const series    = APP_DATA.series[state.selectedSeries];
-  const questions = getQuizQuestions(state.selectedSeries);
-  const qi        = state.quiz.currentQuestion;
-  const q         = questions[qi];
-  const isLast    = qi === questions.length - 1;
-
-  // Header
-  const header = document.getElementById("quiz-header");
-  clearElement(header);
-  const h2      = createElement("h2", "", series.label + " — Quiz");
-  const backBtn = createElement("button", "btn-back", "← Exit Quiz");
-  backBtn.addEventListener("click", () => navigate("topic-select"));
-  header.appendChild(h2);
-  header.appendChild(backBtn);
-
-  // Question container
-  const container = document.getElementById("quiz-container");
-  clearElement(container);
-
-  // Progress bar
-  const progress     = createElement("div", "quiz-progress");
-  const progressText = createElement("span", "", "Question " + (qi + 1) + " of " + questions.length);
-  const progressBar  = createElement("div", "quiz-progress-bar");
-  const progressFill = createElement("div", "quiz-progress-fill");
-  progressFill.style.width = (((qi + 1) / questions.length) * 100) + "%";
-  progressBar.appendChild(progressFill);
-  progress.appendChild(progressText);
-  progress.appendChild(progressBar);
-
-  // Question text
-  const questionEl = createElement("p", "quiz-question", q.question);
-
-  // Answer options
-  const optionsEl = createElement("div", "quiz-options");
-  q.options.forEach((optText, idx) => {
-    const btn = createElement("button", "quiz-option", optText);
-    btn.addEventListener("click", () => handleQuizAnswer(idx));
-    optionsEl.appendChild(btn);
-  });
-
-  // Explanation — hidden until an answer is chosen
-  const explanationEl = createElement("div", "quiz-explanation", q.explanation);
-
-  // Next / Finish button — hidden until an answer is chosen
-  const nextBtn = createElement("button", "btn btn-filled quiz-next-btn",
-    isLast ? "See Results →" : "Next Question →");
-
-  nextBtn.addEventListener("click", () => {
-    if (isLast) {
-      navigate("result");
-    } else {
-      state.quiz.currentQuestion++;
-      renderQuiz();
-    }
-  });
-
-  container.appendChild(progress);
-  container.appendChild(questionEl);
-  container.appendChild(optionsEl);
-  container.appendChild(explanationEl);
-  container.appendChild(nextBtn);
-}
-
-// Called when the user clicks an answer option.
-function handleQuizAnswer(selectedIndex) {
-  const questions = getQuizQuestions(state.selectedSeries);
-  const q         = questions[state.quiz.currentQuestion];
-
-  // Record the answer
-  state.quiz.answers.push(selectedIndex);
-
-  // Disable all buttons so the user can't change their answer
-  const optionBtns = document.querySelectorAll(".quiz-option");
-  optionBtns.forEach(btn => { btn.disabled = true; });
-
-  // Highlight correct and wrong answers
-  optionBtns.forEach((btn, idx) => {
-    if (idx === q.correct) {
-      btn.classList.add("correct");
-    } else if (idx === selectedIndex) {
-      btn.classList.add("wrong");
-    }
-  });
-
-  // Reveal the explanation and the next button
-  document.querySelector(".quiz-explanation").classList.add("visible");
-  document.querySelector(".quiz-next-btn").classList.add("visible");
-}
-
-
-// ── RENDER: RESULT ────────────────────────────────────────────────────────────
-
-function renderResult() {
-  const questions = getQuizQuestions(state.selectedSeries);
-  const series    = APP_DATA.series[state.selectedSeries];
-  const total     = questions.length;
-
-  // Count correct answers
-  const score = state.quiz.answers.filter(
-    (answer, i) => answer === questions[i].correct
-  ).length;
-
-  // Percentage-based tiers so insight stays accurate if question count ever changes
-  const pct = score / total;
-  let insightText;
-  if (pct === 1)        insightText = "Exceptional. You have a strong grounding in this movement.";
-  else if (pct >= 0.8)  insightText = "Impressive. A few artists still have more to reveal.";
-  else if (pct >= 0.6)  insightText = "A solid start. Revisit the artist cards to go deeper.";
-  else if (pct >= 0.4)  insightText = "There is rich territory here to explore. Try the cards again.";
-  else if (pct >= 0.2)  insightText = "This is where discovery begins. Explore and return.";
-  else                  insightText = "Every expert starts here. Explore the cards before retaking.";
-
-  const container = document.getElementById("result-content");
-  clearElement(container);
-
-  const label    = createElement("p", "result-label", series.label);
-  const scoreEl  = createElement("div", "result-score", score + " / " + total);
-  const insight  = createElement("p", "result-insight", insightText);
-  const actions  = createElement("div", "result-actions");
-  const retryBtn = createElement("button", "btn btn-filled", "Retry");
-  const nextBtn  = createElement("button", "btn", "Try Another Series");
-
-  retryBtn.addEventListener("click", () => navigate("quiz"));
-  nextBtn.addEventListener("click", () => navigate("series-select"));
-
-  actions.appendChild(retryBtn);
-  actions.appendChild(nextBtn);
-
-  container.appendChild(label);
-  container.appendChild(scoreEl);
-  container.appendChild(insight);
-  container.appendChild(actions);
-}
-
-
-// ── UTILITIES ─────────────────────────────────────────────────────────────────
-
-// Toggle an artist in/out of favorites. Returns true if now favorited.
-function toggleFavorite(artistId) {
-  if (state.favorites[artistId]) {
-    delete state.favorites[artistId];
-  } else {
-    state.favorites[artistId] = true;
-  }
-  saveFavorites();
-  return !!state.favorites[artistId];
-}
-
-function getArtistsByTopic(seriesId, topicId) {
-  return APP_DATA.series[seriesId].topics[topicId].artists;
-}
-
-function getQuizQuestions(seriesId) {
-  return APP_DATA.series[seriesId].quiz;
-}
-
-// Creates a DOM element with a class name and optional text content.
-function createElement(tag, className, text) {
-  const el = document.createElement(tag);
-  if (className) el.className = className;
-  if (text !== undefined) el.textContent = text;
-  return el;
-}
-
-// Empties a container element so it can be re-rendered cleanly.
-function clearElement(el) {
-  el.innerHTML = "";
-}
-
-
-// ── BOOT ──────────────────────────────────────────────────────────────────────
-
-document.addEventListener("DOMContentLoaded", init);
