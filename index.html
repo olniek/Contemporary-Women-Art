@@ -4,17 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Spend time with women artists across media: flip cards for curator-style insight, save favorites, and check understanding with a short quiz.">
-  <meta property="og:title" content="Women in Contemporary Art">
+  <meta property="og:title" content="Female Contemporary Artist 1">
   <meta property="og:description" content="Explore disciplines, topics, and artists — with favorites and a gentle quiz.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="images/artists/francesca_woodman.png">
-  <title>Women in Contemporary Art</title>
+  <title>Female Contemporary Artist 1</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Ask API: leave content empty for same-origin /api/ask (Vercel or `npx vercel dev`). For static-only hosting (e.g. python http.server) with Ask on Vercel, set to that API origin (https://your-project.vercel.app, no path/trailing slash). API needs OPENAI_API_KEY; for cross-origin set WIA_CORS_ORIGIN on the API to this page’s origin. -->
+  <meta name="wia-ask-api-url" content="">
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content" tabindex="-1" class="app-main">
 
   <section class="screen" id="screen-landing"></section>
 
@@ -45,6 +51,14 @@
     <div class="result-content" id="result-content"></div>
   </section>
 
+  <script>
+    (function () {
+      var el = document.querySelector('meta[name="wia-ask-api-url"]');
+      var raw = el && typeof el.content === "string" ? el.content.trim() : "";
+      if (raw) window.WIA_ASK_API_URL = raw.replace(/\/$/, "");
+    })();
+  </script>
   <script type="module" src="app.js"></script>
+  </main>
 </body>
 </html>

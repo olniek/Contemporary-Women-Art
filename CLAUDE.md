@@ -48,6 +48,8 @@ npm test
 
 `postinstall` installs Playwright Chromium. Unset `PLAYWRIGHT_BROWSERS_PATH` if it points at a cache from another architecture (see project 1 README pattern).
 
+`npm test` runs Playwright (desktop Chromium on all `e2e/*.spec.ts` except `mobile-smoke`, plus Mobile Chrome on [`e2e/mobile-smoke.spec.ts`](e2e/mobile-smoke.spec.ts) only), `check:images`, then `npm run test:unit`, which runs `node --test test/*.test.mjs`. Every file matching that glob is included (quiz bank resolution via `getQuizQuestions`, Ask retrieval scoring, `api/ask` handler branches with mocks). Add new suites only as `test/<name>.test.mjs` so they are picked up automatically. Use `npm run format` / `npm run format:check` for Prettier on `e2e/`, `screens/`, and `lib/`.
+
 ## app.js layout
 
 1. `state` — current screen, series/topic, quiz phase (`pick` | `feedback`), favorites
@@ -66,10 +68,10 @@ npm test
 
 ## Ask (AI Q&A)
 
-- **Static server only** (`python3 -m http.server`): `POST /api/ask` is not available; the Ask UI shows an error unless you use a host that runs serverless functions.
-- **Vercel:** deploy the repo; set **`OPENAI_API_KEY`** for **Production** (and Preview if you use preview URLs). Redeploy after changing env. Optional `OPENAI_MODEL`; optional fallback env name `OPENAI_KEY` only if `OPENAI_API_KEY` is unset. Local testing: `npx vercel dev` (loads `.env.local`).
+- **Static server only** (`python3 -m http.server`): `POST /api/ask` is not available on that origin; the Ask UI shows a hosting hint unless you point Ask at another host (see **Cross-origin API** below) or use `vercel dev` / a full deploy.
+- **Vercel:** deploy the repo; set **`OPENAI_API_KEY`** for **Production** (and Preview if you use preview URLs). Redeploy after changing env. Optional `OPENAI_MODEL`; optional fallback env name `OPENAI_KEY` only if `OPENAI_API_KEY` is unset. Local testing: `npx vercel dev` (loads `.env.local` — copy [`.env.example`](.env.example) and add your key).
 - **503 missing OPENAI_API_KEY:** almost always wrong environment scope in Vercel or needs redeploy — see [README.md](README.md) troubleshooting table.
-- **Cross-origin API:** set `window.WIA_ASK_API_URL = "https://your-deployment.vercel.app"` before `app.js` loads if the static site and API live on different origins.
+- **Cross-origin API:** if the static site and API differ, set the API origin before `app.js` loads. Easiest in-repo: `<meta name="wia-ask-api-url" content="https://your-deployment.vercel.app">` in [`index.html`](index.html) (no trailing slash; a small inline script sets `window.WIA_ASK_API_URL`). Alternatively assign `window.WIA_ASK_API_URL` in your own inline script above the `app.js` tag. On the API deployment, set **`WIA_CORS_ORIGIN`** to the static site origin so `Access-Control-Allow-Origin` matches the browser page (see [README.md](README.md)).
 - **Verify deployment:** `npm run curl:ask -- https://your-deployment.vercel.app`
 
 ## Git workflow

@@ -6,6 +6,8 @@ import { APP_DATA } from "../data.js";
 import { flattenArtists, topKArtists } from "../lib/artist-retrieval.js";
 
 const wikiCache = new Map();
+const WIKI_CACHE_MAX = 80;
+const MAX_QUESTION_CHARS = 2000;
 
 /** Trimmed key; supports OPENAI_KEY alias if OPENAI_API_KEY was misnamed in the dashboard. */
 function openAiApiKey() {
@@ -14,11 +16,18 @@ function openAiApiKey() {
 }
 
 function corsHeaders() {
-  return {
-    "Access-Control-Allow-Origin": "*",
+  const origin = process.env.WIA_CORS_ORIGIN?.trim();
+  const h = {
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
+  if (origin) {
+    h["Access-Control-Allow-Origin"] = origin;
+    h.Vary = "Origin";
+  } else {
+    h["Access-Control-Allow-Origin"] = "*";
+  }
+  return h;
 }
 
 async function fetchWikiSummary(title) {
@@ -37,6 +46,10 @@ async function fetchWikiSummary(title) {
     });
     if (!r.ok) {
       wikiCache.set(key, null);
+      while (wikiCache.size > WIKI_CACHE_MAX) {
+        const first = wikiCache.keys().next().value;
+        wikiCache.delete(first);
+      }
       return null;
     }
     const j = await r.json();
@@ -52,9 +65,17 @@ async function fetchWikiSummary(title) {
       license_short_description: j.license_short_description || "",
     };
     wikiCache.set(key, out);
+    while (wikiCache.size > WIKI_CACHE_MAX) {
+      const first = wikiCache.keys().next().value;
+      wikiCache.delete(first);
+    }
     return out;
   } catch {
     wikiCache.set(key, null);
+    while (wikiCache.size > WIKI_CACHE_MAX) {
+      const first = wikiCache.keys().next().value;
+      wikiCache.delete(first);
+    }
     return null;
   }
 }
@@ -99,7 +120,16 @@ async function callOpenAI(system, user) {
   return text;
 }
 
-export default async function handler(req, res) {
+/**
+ * Vercel serverless entry; optional `deps` for tests (mock Wikipedia / OpenAI).
+ * @param {unknown} req
+ * @param {unknown} res
+ * @param {{ fetchWikiSummary?: typeof fetchWikiSummary; callOpenAI?: typeof callOpenAI }} [deps]
+ */
+export async function handleAsk(req, res, deps = {}) {
+  const fetchWiki = deps.fetchWikiSummary ?? fetchWikiSummary;
+  const callAI = deps.callOpenAI ?? callOpenAI;
+
   Object.entries(corsHeaders()).forEach(([k, v]) => res.setHeader(k, v));
 
   if (req.method === "OPTIONS") {
@@ -127,6 +157,12 @@ export default async function handler(req, res) {
     res.status(400).json({ error: "Missing question" });
     return;
   }
+  if (question.length > MAX_QUESTION_CHARS) {
+    res.status(400).json({
+      error: `Question is too long (max ${MAX_QUESTION_CHARS} characters).`,
+    });
+    return;
+  }
 
   const artists = flattenArtists(APP_DATA);
   const top = topKArtists(question, artists, 8);
@@ -151,12 +187,14 @@ export default async function handler(req, res) {
     movement: a.movement,
     series: a.seriesLabel,
     topic: a.topicLabel,
+    seriesId: a.seriesId,
+    topicId: a.topicId,
   }));
 
   const wikiSummaries = await Promise.all(
     top.map(async (a) => {
       const title = a.wikipediaTitle || a.name;
-      const wiki = await fetchWikiSummary(title);
+      const wiki = await fetchWiki(title);
       return { artistId: a.id, artistName: a.name, requestedTitle: title, wiki };
     })
   );
@@ -171,7 +209,7 @@ export default async function handler(req, res) {
       license: x.wiki.license_short_description || "CC BY-SA",
     }));
 
-  const system = `You are a helpful assistant for the educational web app "Women in Contemporary Art."
+  const system = `You are a helpful assistant for the educational web app "Female Contemporary Artist 1."
 Answer ONLY using the provided curated artist records (primary for interpretation and thematic framing) and optional Wikipedia extracts (supplementary biographical or general facts).
 Rules:
 - Prefer curated fields (insight, keyWork, movement) when they conflict with Wikipedia.
@@ -190,7 +228,7 @@ Rules:
   )}`;
 
   try {
-    const answer = await callOpenAI(system, user);
+    const answer = await callAI(system, user);
     res.status(200).json({
       answer,
       sources: curatedPayload,
@@ -210,3 +248,5 @@ Rules:
     });
   }
 }
+
+export default handleAsk;

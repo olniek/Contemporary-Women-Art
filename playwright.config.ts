@@ -15,7 +15,18 @@ export default defineConfig({
     baseURL,
     trace: "on-first-retry",
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    {
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+      testIgnore: /mobile-smoke\.spec\.ts$/,
+    },
+    {
+      name: "mobile-chrome",
+      use: { ...devices["Pixel 5"] },
+      testMatch: /mobile-smoke\.spec\.ts$/,
+    },
+  ],
   webServer: {
     command: `python3 -m http.server ${PORT} --bind ${HOST}`,
     cwd: process.cwd(),

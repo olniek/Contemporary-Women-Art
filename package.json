@@ -1,14 +1,19 @@
 {
-  "name": "women-in-contemporary-art",
+  "name": "female-contemporary-artist-1",
   "private": true,
   "type": "module",
   "scripts": {
     "postinstall": "env -u PLAYWRIGHT_BROWSERS_PATH playwright install chromium",
     "check:images": "node scripts/check-artist-images.mjs",
     "curl:ask": "node scripts/curl-ask.mjs",
-    "test": "env -u PLAYWRIGHT_BROWSERS_PATH playwright test && npm run check:images"
+    "lint:data": "node scripts/lint-app-data.mjs",
+    "format": "prettier --write \"e2e/**/*.ts\" \"screens/**/*.js\" \"lib/**/*.js\"",
+    "format:check": "prettier --check \"e2e/**/*.ts\" \"screens/**/*.js\" \"lib/**/*.js\"",
+    "test:unit": "node --test test/*.test.mjs",
+    "test": "env -u PLAYWRIGHT_BROWSERS_PATH playwright test && npm run check:images && npm run test:unit && npm run lint:data"
   },
   "devDependencies": {
-    "@playwright/test": "^1.49.0"
+    "@playwright/test": "^1.49.0",
+    "prettier": "^3.5.0"
   }
 }

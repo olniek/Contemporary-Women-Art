@@ -83,12 +83,29 @@ export const APP_DATA = {
         identity: {
           id: "identity",
           label: "Identity",
+          description:
+            "How contemporary photographers stage identity, community, and refusal—often turning the lens back on who gets to look.",
+          thesis:
+            "Start with the gaze: who is seen, who is erased, and what the frame does to both.",
+          keyIdeas:
+            "Identity in recent photography is rarely a fixed label—it is negotiated through staging, seriality, and the politics of representation. Pay attention to who controls the camera and who bears the risk of visibility.",
+          result: {
+            learnedIdeas: [
+              "Reading portraiture as argument, not neutral description",
+              "Noticing how serial work builds meaning across repeated poses and settings",
+              "Tracing how artists redirect or refuse the viewer’s expectations",
+            ],
+            synthesis:
+              "You practiced connecting single images to larger questions of power, care, and community.",
+            strongestSkill: "Linking visual choices to social context without reducing artists to symbols.",
+            nextFocus: "Compare two artists’ use of staging—what changes when the scene is domestic versus public?",
+          },
           artists: [
             {
               id: "zanele_muholi",
               name: "Zanele Muholi",
               years: "b. 1972",
-              image: "images/artists/zanele_muholi.svg",
+              image: "images/artists/zanele_muholi.jpg",
               imageAlt: "Neutral placeholder tile for Zanele Muholi — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a2a",
               insight: "Muholi's self-portrait series Somnyama Ngonyama reclaims the Black gaze by manipulating exposure to hyperpigment their skin, turning the camera into an act of resistance.",
@@ -99,7 +116,7 @@ export const APP_DATA = {
               id: "nan_goldin",
               name: "Nan Goldin",
               years: "b. 1953",
-              image: "images/artists/nan_goldin.svg",
+              image: "images/artists/nan_goldin.png",
               imageAlt: "Neutral placeholder tile for Nan Goldin — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3d2b2b",
               insight: "Goldin's The Ballad of Sexual Dependency is an intimate visual diary of her circle — capturing love, addiction, and violence with unflinching honesty in 1970s–80s New York.",
@@ -110,7 +127,7 @@ export const APP_DATA = {
               id: "carrie_mae_weems",
               name: "Carrie Mae Weems",
               years: "b. 1953",
-              image: "images/artists/carrie_mae_weems.svg",
+              image: "images/artists/carrie_mae_weems.jpg",
               imageAlt: "Neutral placeholder tile for Carrie Mae Weems — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a3a",
               insight: "Weems's Kitchen Table Series uses a single domestic setting to explore the complexity of Black women's lives — relationships, solitude, power, and joy — through staged narrative sequences.",
@@ -122,6 +139,17 @@ export const APP_DATA = {
         documentary: {
           id: "documentary",
           label: "Documentary",
+          description:
+            "Witness, ethics, and the gap between event and image—when documentary work asks who the photograph serves.",
+          thesis: "Ask what the picture wants from you as a viewer: empathy, action, or complicity.",
+          keyIdeas:
+            "Documentary photographs do not simply record reality—they shape how histories are remembered and funded. Ethical looking includes questioning assignment, editing, and circulation.",
+          result: {
+            learnedIdeas: [
+              "Separating testimony from spectacle in conflict and crisis imagery",
+              "Following how captions and context shift a photograph’s meaning",
+            ],
+          },
           artists: [
             {
               id: "dorothea_lange",
@@ -138,7 +166,7 @@ export const APP_DATA = {
               id: "susan_meiselas",
               name: "Susan Meiselas",
               years: "b. 1948",
-              image: "images/artists/susan_meiselas.svg",
+              image: "images/artists/susan_meiselas.jpg",
               imageAlt: "Neutral placeholder tile for Susan Meiselas — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1e2d1e",
               insight: "Meiselas embedded herself in the 1978–79 Nicaraguan revolution, creating images that blur the boundary between witness and participant — and raised lasting questions about photojournalistic ethics.",
@@ -149,7 +177,7 @@ export const APP_DATA = {
               id: "an_my_le",
               name: "An-My Lê",
               years: "b. 1960",
-              image: "images/artists/an_my_le.svg",
+              image: "images/artists/an_my_le.jpg",
               imageAlt: "Neutral placeholder tile for An-My Lê — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1e2535",
               insight: "Lê photographs military re-enactments and training exercises, using the gap between performance and reality to interrogate how America constructs and mythologizes war.",
@@ -190,7 +218,7 @@ export const APP_DATA = {
               id: "lorna_simpson",
               name: "Lorna Simpson",
               years: "b. 1960",
-              image: "images/artists/lorna_simpson.svg",
+              image: "images/artists/lorna_simpson.jpg",
               imageAlt: "Neutral placeholder tile for Lorna Simpson — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Simpson pairs photographs of Black women's bodies with fragmented text, refusing the viewer's gaze by showing subjects from behind — insisting on interiority over spectacle.",
@@ -272,7 +300,7 @@ export const APP_DATA = {
               id: "helen_frankenthaler",
               name: "Helen Frankenthaler",
               years: "1928–2011",
-              image: "images/artists/helen_frankenthaler.svg",
+              image: "images/artists/helen_frankenthaler.jpg",
               imageAlt: "Neutral placeholder tile for Helen Frankenthaler — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a3a",
               insight: "Frankenthaler poured thinned paint directly onto unprimed canvas, inventing the soak-stain technique that defined Color Field painting. Her landmark Mountains and Sea transformed how a generation approached abstraction.",
@@ -283,7 +311,7 @@ export const APP_DATA = {
               id: "agnes_martin",
               name: "Agnes Martin",
               years: "1912–2004",
-              image: "images/artists/agnes_martin.svg",
+              image: "images/artists/agnes_martin.jpg",
               imageAlt: "Neutral placeholder tile for Agnes Martin — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#dcdcd4",
               insight: "Martin's soft pencil grids on pale linen canvases are not cold minimalism but expressions of happiness and innocence — she described them as 'about beauty, and it's a simple subject.'",
@@ -294,7 +322,7 @@ export const APP_DATA = {
               id: "lee_krasner",
               name: "Lee Krasner",
               years: "1908–1984",
-              image: "images/artists/lee_krasner.svg",
+              image: "images/artists/lee_krasner.jpg",
               imageAlt: "Neutral placeholder tile for Lee Krasner — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3a2a1a",
               insight: "Long overshadowed by her husband Jackson Pollock, Krasner's large-scale Abstract Expressionist works — including the collaged Night Journeys series made after his death — are now recognized as central to the movement.",
@@ -311,7 +339,7 @@ export const APP_DATA = {
               id: "alice_neel",
               name: "Alice Neel",
               years: "1900–1984",
-              image: "images/artists/alice_neel.svg",
+              image: "images/artists/alice_neel.jpg",
               imageAlt: "Neutral placeholder tile for Alice Neel — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1e3a2a",
               insight: "Neel painted the people mainstream art ignored: working-class New Yorkers, Black and Latino neighbors, pregnant women, and gay men — creating a radical portrait of 20th-century American life from the margins.",
@@ -322,7 +350,7 @@ export const APP_DATA = {
               id: "jenny_saville",
               name: "Jenny Saville",
               years: "b. 1970",
-              image: "images/artists/jenny_saville.svg",
+              image: "images/artists/jenny_saville.jpg",
               imageAlt: "Neutral placeholder tile for Jenny Saville — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3a1a1a",
               insight: "Saville paints the female body at monumental scale and from unconventional vantage points — looking down at flesh that overflows the frame — refusing the idealizing traditions of the nude.",
@@ -333,7 +361,7 @@ export const APP_DATA = {
               id: "lynette_yiadom_boakye",
               name: "Lynette Yiadom-Boakye",
               years: "b. 1977",
-              image: "images/artists/lynette_yiadom_boakye.svg",
+              image: "images/artists/lynette_yiadom_boakye.jpg",
               imageAlt: "Neutral placeholder tile for Lynette Yiadom-Boakye — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Yiadom-Boakye paints fictional Black figures, composing them from imagination rather than life or reference. Her subjects suggest interiority without disclosure — neither portraits nor allegories.",
@@ -350,7 +378,7 @@ export const APP_DATA = {
               id: "faith_ringgold",
               name: "Faith Ringgold",
               years: "b. 1930",
-              image: "images/artists/faith_ringgold.svg",
+              image: "images/artists/faith_ringgold.jpg",
               imageAlt: "Neutral placeholder tile for Faith Ringgold — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Ringgold's story quilts merge West African textile tradition with American quilt-making and narrative text — using a domestic craft historically associated with Black women to tell stories that museums once refused to exhibit.",
@@ -361,7 +389,7 @@ export const APP_DATA = {
               id: "kara_walker",
               name: "Kara Walker",
               years: "b. 1969",
-              image: "images/artists/kara_walker.svg",
+              image: "images/artists/kara_walker.jpg",
               imageAlt: "Neutral placeholder tile for Kara Walker — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#0a0a0a",
               insight: "Walker's large-scale black silhouettes stage grotesque tableaux of slavery's violence and sexual exploitation — using a genteel 19th-century art form to force confrontation with histories Americans prefer to obscure.",
@@ -372,7 +400,7 @@ export const APP_DATA = {
               id: "cecily_brown",
               name: "Cecily Brown",
               years: "b. 1969",
-              image: "images/artists/cecily_brown.svg",
+              image: "images/artists/cecily_brown.jpg",
               imageAlt: "Neutral placeholder tile for Cecily Brown — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Brown's densely layered paintings hover between figuration and abstraction — bodies, landscapes, and violence blur together in surfaces that reward sustained looking and resist easy resolution.",
@@ -444,6 +472,9 @@ export const APP_DATA = {
     sculpture: {
       id: "sculpture",
       label: "Sculpture",
+      status: "coming-soon",
+      comingSoonDescription:
+        "Three topics—body, space, and material—are in progress. When this series goes live, you will browse artists and take topic-specific quizzes here.",
       icon: "◯",
       topics: {
         body: {
@@ -454,7 +485,7 @@ export const APP_DATA = {
               id: "louise_bourgeois",
               name: "Louise Bourgeois",
               years: "1911–2010",
-              image: "images/artists/louise_bourgeois.svg",
+              image: "images/artists/louise_bourgeois.jpg",
               imageAlt: "Neutral placeholder tile for Louise Bourgeois — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Bourgeois spent seven decades making art about the body, memory, and family. Her giant spider sculptures Maman represent her mother — described as patient, protective, and industrious as a weaver.",
@@ -465,7 +496,7 @@ export const APP_DATA = {
               id: "kiki_smith",
               name: "Kiki Smith",
               years: "b. 1954",
-              image: "images/artists/kiki_smith.svg",
+              image: "images/artists/kiki_smith.jpg",
               imageAlt: "Neutral placeholder tile for Kiki Smith — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a1a",
               insight: "Smith makes the interior of the body visible — casting organs, trailing viscera, depicting bodily processes that culture renders taboo. Tale features a female figure crawling, with a long tail behind her.",
@@ -476,7 +507,7 @@ export const APP_DATA = {
               id: "sarah_lucas",
               name: "Sarah Lucas",
               years: "b. 1962",
-              image: "images/artists/sarah_lucas.svg",
+              image: "images/artists/sarah_lucas.jpg",
               imageAlt: "Neutral placeholder tile for Sarah Lucas — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Lucas's sculptures use everyday objects — mattresses, toilets, fried eggs, cigarettes — to deconstruct the sexual objectification of women through crude, sardonic wit rather than earnest protest.",
@@ -493,7 +524,7 @@ export const APP_DATA = {
               id: "rachel_whiteread",
               name: "Rachel Whiteread",
               years: "b. 1963",
-              image: "images/artists/rachel_whiteread.svg",
+              image: "images/artists/rachel_whiteread.jpg",
               imageAlt: "Neutral placeholder tile for Rachel Whiteread — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#d0c8b8",
               insight: "Whiteread casts the negative space inside and around ordinary objects — the air under a chair, the inside of a room — making invisible domestic space tangible and monumental.",
@@ -504,7 +535,7 @@ export const APP_DATA = {
               id: "maya_lin",
               name: "Maya Lin",
               years: "b. 1959",
-              image: "images/artists/maya_lin.svg",
+              image: "images/artists/maya_lin.jpg",
               imageAlt: "Neutral placeholder tile for Maya Lin — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Lin's Vietnam Veterans Memorial refuses heroic imagery entirely — a black granite chevron cut into the earth, listing 58,000 names. Visitors see their own reflection in the names of the dead.",
@@ -515,7 +546,7 @@ export const APP_DATA = {
               id: "ursula_von_rydingsvard",
               name: "Ursula von Rydingsvard",
               years: "b. 1942",
-              image: "images/artists/ursula_von_rydingsvard.svg",
+              image: "images/artists/ursula_von_rydingsvard.jpg",
               imageAlt: "Neutral placeholder tile for Ursula von Rydingsvard — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#3a2a1a",
               insight: "Von Rydingsvard builds massive sculptures from thousands of cedar beams, cutting and gouging them with chainsaws and chisels to create surfaces that resemble eroded landscape or interior organs.",
@@ -532,7 +563,7 @@ export const APP_DATA = {
               id: "eva_hesse",
               name: "Eva Hesse",
               years: "1936–1970",
-              image: "images/artists/eva_hesse.svg",
+              image: "images/artists/eva_hesse.jpg",
               imageAlt: "Neutral placeholder tile for Eva Hesse — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#c8b89a",
               insight: "Hesse transformed Post-Minimalism by introducing latex, rope, and fiberglass — organic, unstable materials that sag, droop, and decay. Her work insists on the absurd and the bodily within geometric form.",
@@ -543,7 +574,7 @@ export const APP_DATA = {
               id: "el_anatsui",
               name: "El Anatsui",
               years: "b. 1944",
-              image: "images/artists/el_anatsui.svg",
+              image: "images/artists/el_anatsui.jpg",
               imageAlt: "Neutral placeholder tile for El Anatsui — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#8a6a2a",
               insight: "Anatsui creates large-scale tapestry-like sculptures from thousands of flattened bottle caps and aluminum foil, referencing both African kente cloth and the global trade routes that brought alcohol to West Africa.",
@@ -636,7 +667,7 @@ export const APP_DATA = {
               id: "marina_abramovic",
               name: "Marina Abramović",
               years: "b. 1946",
-              image: "images/artists/marina_abramovic.svg",
+              image: "images/artists/marina_abramovic.jpg",
               imageAlt: "Neutral placeholder tile for Marina Abramović — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a1a",
               insight: "Abramović's The Artist is Present placed her silently opposite museum visitors for 736 hours — testing the limits of presence, endurance, and what it means to truly see and be seen by another person.",
@@ -647,7 +678,7 @@ export const APP_DATA = {
               id: "yoko_ono",
               name: "Yoko Ono",
               years: "b. 1933",
-              image: "images/artists/yoko_ono.svg",
+              image: "images/artists/yoko_ono.jpg",
               imageAlt: "Neutral placeholder tile for Yoko Ono — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a2a",
               insight: "Cut Piece invited audience members to cut away Ono's clothing with scissors — transferring agency to the viewer and exposing the violence latent in looking, long before this language entered mainstream feminist theory.",
@@ -658,7 +689,7 @@ export const APP_DATA = {
               id: "ana_mendieta",
               name: "Ana Mendieta",
               years: "1948–1985",
-              image: "images/artists/ana_mendieta.svg",
+              image: "images/artists/ana_mendieta.jpg",
               imageAlt: "Neutral placeholder tile for Ana Mendieta — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Mendieta's Silueta Series documented her imprinting her body's outline into earth, sand, and natural materials — merging the female form with landscape as a search for belonging between her Cuban heritage and American exile.",
@@ -675,7 +706,7 @@ export const APP_DATA = {
               id: "tehching_hsieh",
               name: "Tehching Hsieh",
               years: "b. 1950",
-              image: "images/artists/tehching_hsieh.svg",
+              image: "images/artists/tehching_hsieh.jpg",
               imageAlt: "Neutral placeholder tile for Tehching Hsieh — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Hsieh's One Year Performances subjected his body to extreme constraints for exactly 365 days — punching a time clock every hour, living outdoors, never entering buildings. Art as a record of time itself.",
@@ -686,7 +717,7 @@ export const APP_DATA = {
               id: "adrian_piper",
               name: "Adrian Piper",
               years: "b. 1948",
-              image: "images/artists/adrian_piper.svg",
+              image: "images/artists/adrian_piper.png",
               imageAlt: "Neutral placeholder tile for Adrian Piper — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Piper's Catalysis performances took place in public — she rode the subway smelling of vinegar, or wore a sign reading 'Wet Paint' — inserting discomfort into everyday space to expose social codes governing public behavior.",
@@ -697,7 +728,7 @@ export const APP_DATA = {
               id: "carolee_schneemann",
               name: "Carolee Schneemann",
               years: "1939–2019",
-              image: "images/artists/carolee_schneemann.svg",
+              image: "images/artists/carolee_schneemann.jpg",
               imageAlt: "Neutral placeholder tile for Carolee Schneemann — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a1a",
               insight: "Schneemann's Interior Scroll involved drawing a text from her vagina and reading it aloud — directly asserting the female body as a site of intellectual and creative authority against the erasure of women's voices.",
@@ -714,7 +745,7 @@ export const APP_DATA = {
               id: "coco_fusco",
               name: "Coco Fusco",
               years: "b. 1960",
-              image: "images/artists/coco_fusco.svg",
+              image: "images/artists/coco_fusco.jpg",
               imageAlt: "Neutral placeholder tile for Coco Fusco — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Fusco and Guillermo Gómez-Peña spent three days in a cage at the 1992 Columbus quincentennial, posing as 'undiscovered Amerindians' — exposing how Western institutions had always displayed colonised bodies as spectacle.",
@@ -725,7 +756,7 @@ export const APP_DATA = {
               id: "lorraine_ogrady",
               name: "Lorraine O'Grady",
               years: "b. 1934",
-              image: "images/artists/lorraine_ogrady.svg",
+              image: "images/artists/lorraine_ogrady.jpg",
               imageAlt: "Neutral placeholder tile for Lorraine O'Grady — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a1a",
               insight: "O'Grady's Mlle Bourgeoise Noire crashed white art world openings wearing a gown made of white gloves, flogging herself and demanding: 'Black art must take more risks!' — a direct confrontation with institutional exclusion.",
@@ -736,7 +767,7 @@ export const APP_DATA = {
               id: "pope_l",
               name: "Pope.L",
               years: "b. 1955",
-              image: "images/artists/pope_l.svg",
+              image: "images/artists/pope_l.jpg",
               imageAlt: "Neutral placeholder tile for Pope.L — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a2a",
               insight: "Pope.L's crawl performances — including a 22-mile crawl the length of Broadway — use abjection and endurance to excavate race, poverty, and public space, asking who has the right to occupy a city's streets.",
@@ -818,7 +849,7 @@ export const APP_DATA = {
               id: "joan_jonas",
               name: "Joan Jonas",
               years: "b. 1936",
-              image: "images/artists/joan_jonas.svg",
+              image: "images/artists/joan_jonas.jpg",
               imageAlt: "Neutral placeholder tile for Joan Jonas — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a2a",
               insight: "Jonas was among the first artists to use video as a live feedback tool, incorporating mirrors, masks, and live monitors into performances where image and body deliberately desynchronize. Her Vertical Roll (1972) exploits a TV's rolling malfunction as a rhythmic, hypnotic device.",
@@ -829,7 +860,7 @@ export const APP_DATA = {
               id: "ulrike_rosenbach",
               name: "Ulrike Rosenbach",
               years: "b. 1943",
-              image: "images/artists/ulrike_rosenbach.svg",
+              image: "images/artists/ulrike_rosenbach.jpg",
               imageAlt: "Neutral placeholder tile for Ulrike Rosenbach — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Rosenbach overlaid live video of her own face onto art-historical images of the Madonna, forcing confrontation between representations of women in Christian iconography and the living female body performing in real time.",
@@ -840,7 +871,7 @@ export const APP_DATA = {
               id: "shigeko_kubota",
               name: "Shigeko Kubota",
               years: "1937–2015",
-              image: "images/artists/shigeko_kubota.svg",
+              image: "images/artists/shigeko_kubota.jpg",
               imageAlt: "Neutral placeholder tile for Shigeko Kubota — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a2a",
               insight: "Kubota built sculptural furniture and objects containing embedded monitors — her Duchampiana series enclosed video footage inside a physical staircase, forcing the viewer to move through the work rather than simply watch it.",
@@ -919,7 +950,7 @@ export const APP_DATA = {
               id: "dara_birnbaum",
               name: "Dara Birnbaum",
               years: "b. 1946",
-              image: "images/artists/dara_birnbaum.svg",
+              image: "images/artists/dara_birnbaum.jpg",
               imageAlt: "Neutral placeholder tile for Dara Birnbaum — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a1a",
               insight: "Technology/Transformation: Wonder Woman looped the transformation sequence from the TV series, isolating the pyrotechnic spectacle of female power to expose how broadcast television packages and sells a fantasy of women's strength.",
@@ -930,7 +961,7 @@ export const APP_DATA = {
               id: "sadie_benning",
               name: "Sadie Benning",
               years: "b. 1973",
-              image: "images/artists/sadie_benning.svg",
+              image: "images/artists/sadie_benning.jpg",
               imageAlt: "Neutral placeholder tile for Sadie Benning — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a1a1a",
               insight: "Benning made confessional diary videos as a teenager using a Fisher-Price PXL 2000 toy camera — the deliberately degraded pixelvision image becoming inseparable from the rawness of coming out as a queer teenager in Wisconsin.",
@@ -941,7 +972,7 @@ export const APP_DATA = {
               id: "amal_kenawy",
               name: "Amal Kenawy",
               years: "1974–2012",
-              image: "images/artists/amal_kenawy.svg",
+              image: "images/artists/amal_kenawy.jpg",
               imageAlt: "Neutral placeholder tile for Amal Kenawy — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a2a1a",
               insight: "Kenawy's videos fused performance, choreography, and surrealist imagery to address political repression and bodily constraint in Egypt — Silence of the Lambs staged dozens of crawling figures in Cairo's streets as an uninvited public intervention.",
@@ -958,7 +989,7 @@ export const APP_DATA = {
               id: "pipilotti_rist",
               name: "Pipilotti Rist",
               years: "b. 1962",
-              image: "images/artists/pipilotti_rist.svg",
+              image: "images/artists/pipilotti_rist.jpg",
               imageAlt: "Neutral placeholder tile for Pipilotti Rist — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#1a2a1a",
               insight: "Rist projects large-scale video onto floors and ceilings rather than walls, immersing viewers inside lush, distorted color fields — Ever Is Over All shows her smashing car windows with a flower while a police officer smiles in approval.",
@@ -969,7 +1000,7 @@ export const APP_DATA = {
               id: "hito_steyerl",
               name: "Hito Steyerl",
               years: "b. 1966",
-              image: "images/artists/hito_steyerl.svg",
+              image: "images/artists/hito_steyerl.jpg",
               imageAlt: "Neutral placeholder tile for Hito Steyerl — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#0a1a2a",
               insight: "Steyerl's essay films treat resolution, compression artifacts, and file formats as political material — How Not to Be Seen: A Fucking Didactic Educational .MOV File uses the logic of surveillance and image degradation to examine visibility and erasure.",
@@ -980,7 +1011,7 @@ export const APP_DATA = {
               id: "eija_liisa_ahtila",
               name: "Eija-Liisa Ahtila",
               years: "b. 1959",
-              image: "images/artists/eija_liisa_ahtila.svg",
+              image: "images/artists/eija_liisa_ahtila.jpg",
               imageAlt: "Neutral placeholder tile for Eija-Liisa Ahtila — artwork photo pending; see docs/IMAGE_CREDITS.md.",
               imagePlaceholder: "#2a1a2a",
               insight: "Ahtila presents narrative across multiple synchronized screens, fragmenting a single story in space so that viewers must move between projections to assemble meaning — Anne, Aki and God uses three screens to depict psychosis from inside the experience.",
@@ -1022,6 +1053,45 @@ export function getQuizQuestions(seriesId, topicId) {
   return LEGACY_QUIZ_QUESTIONS.map(normalizeQuestion);
 }
 
+/** True when the quiz uses the shared cross-topic bank (not topic- or series-specific questions). */
+export function isLegacyQuizBank(seriesId, topicId) {
+  const series = APP_DATA.series[seriesId];
+  const topic = series.topics[topicId];
+  const tq = topic.quiz;
+  if (Array.isArray(tq) && tq.length === 5) return false;
+  const sq = series.quiz;
+  if (Array.isArray(sq) && sq.length === 5) return false;
+  return true;
+}
+
 export function quizQuestionCount(seriesId, topicId) {
   return getQuizQuestions(seriesId, topicId).length;
+}
+
+/** Curated anchors for the landing “5-minute tour” (live series/topics only). */
+export const SHORT_SESSION_POOL = [
+  { seriesId: "photography", topicId: "identity", artistId: "zanele_muholi" },
+  { seriesId: "photography", topicId: "documentary", artistId: "dorothea_lange" },
+  { seriesId: "painting", topicId: "figurative", artistId: "alice_neel" },
+  { seriesId: "painting", topicId: "abstraction", artistId: "helen_frankenthaler" },
+  { seriesId: "performance", topicId: "duration", artistId: "tehching_hsieh" },
+  { seriesId: "videoArt", topicId: "pioneeringSingle", artistId: "joan_jonas" },
+];
+
+/**
+ * Deterministic editorial pick for a calendar day (UTC), for a short browse session.
+ * @param {Date} [date]
+ */
+export function shortSessionAnchorForDay(date = new Date()) {
+  const y = date.getUTCFullYear();
+  const m = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const d = String(date.getUTCDate()).padStart(2, "0");
+  const key = `${y}-${m}-${d}`;
+  let h = 2166136261;
+  for (let i = 0; i < key.length; i++) {
+    h ^= key.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  const idx = (Math.abs(h) >>> 0) % SHORT_SESSION_POOL.length;
+  return SHORT_SESSION_POOL[idx];
 }
