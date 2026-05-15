@@ -2,6 +2,32 @@ import { APP_DATA, shortSessionAnchorForDay } from "../lib/app-data.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 import { readLastPlace } from "../lib/session-place.js";
 
+const LANDING_ARTIST_ID = "francesca_woodman";
+
+/** @param {string} artistId */
+function findArtistById(artistId) {
+  for (const series of Object.values(APP_DATA.series)) {
+    for (const topic of Object.values(series.topics)) {
+      const artist = topic.artists?.find((a) => a.id === artistId);
+      if (artist) return artist;
+    }
+  }
+  return null;
+}
+
+/**
+ * @param {HTMLElement} nav
+ * @param {HTMLElement} link
+ */
+function appendSecondaryLink(nav, link) {
+  if (nav.childNodes.length) {
+    const sep = createElement("span", "landing-secondary-sep", "·");
+    sep.setAttribute("aria-hidden", "true");
+    nav.appendChild(sep);
+  }
+  nav.appendChild(link);
+}
+
 /**
  * @param {{
  *   navigate: (s: string) => void,
@@ -20,23 +46,64 @@ export function renderLanding(ctx) {
 
   const title = createElement("h1", "landing-title");
   title.setAttribute("aria-label", "Female Contemporary Artists");
-  for (const [cap, rest] of [
-    ["F", "emale"],
-    ["C", "ontemporary"],
-    ["A", "rtists"],
-  ]) {
-    const line = createElement("span", "landing-title-line");
-    const capSpan = createElement("span", "landing-title-cap", cap);
-    line.appendChild(capSpan);
-    line.appendChild(document.createTextNode(rest));
+  for (const lineText of ["Female", "Contemporary", "Artists"]) {
+    const line = createElement("span", "landing-title-line", lineText);
     title.appendChild(line);
   }
 
   const tagline = createElement(
     "p",
     "landing-tagline",
-    "Women artists across media—flip cards, save favorites, take a short quiz.",
+    "Flip cards, save favorites, take a short quiz.",
   );
+
+  const actions = createElement("div", "landing-actions");
+  const primaryRow = createElement("div", "landing-actions-primary");
+  const beginBtn = createElement("button", "btn btn-filled", "Begin");
+  beginBtn.addEventListener("click", () => ctx.navigate("series-select"));
+  primaryRow.appendChild(beginBtn);
+  actions.appendChild(primaryRow);
+
+  const secondaryNav = document.createElement("nav");
+  secondaryNav.className = "landing-secondary";
+  secondaryNav.setAttribute("aria-label", "Other ways to explore");
+
+  const last = readLastPlace();
+  if (last) {
+    const ls = APP_DATA.series[last.seriesId];
+    const lt = ls.topics[last.topicId];
+    const continueBtn = createElement(
+      "button",
+      "landing-link",
+      `Continue: ${ls.label} — ${lt.label}`,
+    );
+    continueBtn.addEventListener("click", () =>
+      ctx.navigate("topic-select", { series: last.seriesId, topic: last.topicId }),
+    );
+    appendSecondaryLink(secondaryNav, continueBtn);
+  }
+
+  const tourAnchor = shortSessionAnchorForDay();
+  const tourBtn = createElement("button", "landing-link", "5-minute tour");
+  tourBtn.addEventListener("click", () =>
+    ctx.navigate("topic-select", {
+      series: tourAnchor.seriesId,
+      topic: tourAnchor.topicId,
+      scrollToArtistId: tourAnchor.artistId,
+    }),
+  );
+  appendSecondaryLink(secondaryNav, tourBtn);
+
+  const nFav = ctx.collectFavoriteArtists().length;
+  const favBtn = createElement(
+    "button",
+    "landing-link",
+    nFav ? `Your favorites (${nFav})` : "Your favorites",
+  );
+  favBtn.addEventListener("click", () => ctx.navigate("favorites"));
+  appendSecondaryLink(secondaryNav, favBtn);
+
+  actions.appendChild(secondaryNav);
 
   const { live, total } = ctx.seriesInventorySummary();
   const status = createElement(
@@ -45,77 +112,26 @@ export function renderLanding(ctx) {
     `${live} of ${total} discipline${total === 1 ? "" : "s"} live`,
   );
 
-  const actions = createElement("div", "landing-actions");
-  const primaryRow = createElement("div", "landing-actions-primary");
-  const secondaryRow = createElement("div", "landing-actions-secondary");
-
-  const last = readLastPlace();
-  if (last) {
-    const ls = APP_DATA.series[last.seriesId];
-    const lt = ls.topics[last.topicId];
-    const continueBtn = createElement(
-      "button",
-      "btn btn-outline landing-continue-btn",
-      `Continue: ${ls.label} — ${lt.label}`,
-    );
-    continueBtn.addEventListener("click", () =>
-      ctx.navigate("topic-select", { series: last.seriesId, topic: last.topicId }),
-    );
-    secondaryRow.appendChild(continueBtn);
-  }
-
-  const btn = createElement("button", "btn btn-filled", "Begin");
-  btn.addEventListener("click", () => ctx.navigate("series-select"));
-  primaryRow.appendChild(btn);
-
-  const tourAnchor = shortSessionAnchorForDay();
-  const tourBtn = createElement("button", "btn btn-outline", "5-minute tour");
-  tourBtn.addEventListener("click", () =>
-    ctx.navigate("topic-select", {
-      series: tourAnchor.seriesId,
-      topic: tourAnchor.topicId,
-      scrollToArtistId: tourAnchor.artistId,
-    }),
-  );
-  secondaryRow.appendChild(tourBtn);
-
-  const nFav = ctx.collectFavoriteArtists().length;
-  const favBtn = createElement(
-    "button",
-    "btn btn-outline",
-    nFav ? `Your favorites (${nFav})` : "Your favorites",
-  );
-  favBtn.addEventListener("click", () => ctx.navigate("favorites"));
-  secondaryRow.appendChild(favBtn);
-
-  actions.appendChild(primaryRow);
-  if (secondaryRow.childNodes.length) actions.appendChild(secondaryRow);
-
   copy.appendChild(label);
   copy.appendChild(title);
   copy.appendChild(tagline);
-  copy.appendChild(status);
   copy.appendChild(actions);
+  copy.appendChild(status);
 
+  const featured = findArtistById(LANDING_ARTIST_ID);
   const visual = createElement("div", "landing-visual");
   const figure = document.createElement("figure");
   figure.className = "landing-example";
   const img = document.createElement("img");
-  img.src = "images/artists/francesca_woodman.png";
+  img.src = featured?.image ?? "images/artists/francesca_woodman.png";
   img.width = 400;
   img.height = 520;
   img.loading = "lazy";
-  img.alt =
-    "Black-and-white photograph: figure in a doorframe, arms raised — example of contemporary lens-based work.";
+  img.alt = featured?.imageAlt ?? "Black-and-white photograph: figure in a doorframe, arms raised.";
   const cap = document.createElement("figcaption");
-  const strong = document.createElement("strong");
-  strong.textContent = "Example insight.";
-  cap.appendChild(strong);
-  cap.appendChild(
-    document.createTextNode(
-      " The doorway is both frame and burden—the pose keeps symbolic weight without leaving the room.",
-    ),
-  );
+  cap.textContent = featured?.keyWork
+    ? `${featured.name} — ${featured.keyWork}`
+    : (featured?.name ?? "Francesca Woodman");
   figure.appendChild(img);
   figure.appendChild(cap);
   visual.appendChild(figure);
