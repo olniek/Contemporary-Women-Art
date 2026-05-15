@@ -13,7 +13,7 @@ You are a content curator for the Female Contemporary Artist 1 learning app. You
 ## Project location
 Repository root: `data.js` (curatorial data) and `app.js` (UI only).
 
-All series, topics, artists, and optional per-topic quizzes live in `export const APP_DATA` in `data.js`. Shared fallback quiz bank: `LEGACY_QUIZ_QUESTIONS`. Do not change app wiring in `app.js` unless adding new UI fields.
+All series, topics, artists, and optional per-topic quizzes live in `export const APP_DATA` in `data.js`. The browser loads content via `lib/app-data.js` (versioned re-export). Shared fallback quiz bank: `LEGACY_QUIZ_QUESTIONS`. Do not change app wiring in `app.js` unless adding new UI fields. For series launch workflows (coming-soon removal, topic copy, quiz banks), read `.cursor/skills/wia-series-content/SKILL.md`.
 
 ## Data structures
 

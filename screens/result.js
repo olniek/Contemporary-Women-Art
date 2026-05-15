@@ -1,4 +1,4 @@
-import { APP_DATA, getQuizQuestions } from "../data.js";
+import { APP_DATA, getQuizQuestions } from "../lib/app-data.js";
 import { markTopicQuizDone } from "../lib/session-place.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 import { createFlowStepper } from "../lib/flow-stepper.js";

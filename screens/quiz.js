@@ -1,4 +1,4 @@
-import { APP_DATA, getQuizQuestions, isLegacyQuizBank } from "../data.js";
+import { APP_DATA, getQuizQuestions, isLegacyQuizBank } from "../lib/app-data.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 import { createFlowStepper } from "../lib/flow-stepper.js";
 

@@ -14,7 +14,8 @@ When you change one area, finish the job: update **all** artifacts that depend o
 | New or changed artist `image` | `docs/IMAGE_CREDITS.md` entry for that file; run `npm run check:images` |
 | New artist fields used by Ask (e.g. keywords, `wikipediaTitle`) | Sanity: Ask still resolves; extend `test/artist-retrieval.test.mjs` if scoring/flatten rules change |
 | New/changed `quiz` (must be **exactly 5** per bank) | `e2e/quiz-flow.spec.ts` / `e2e/quiz-data-invariant.spec.ts` if assumptions break; topic/series copy if UI depends on it |
-| New series/topic or “coming soon” behavior | Relevant `e2e/*.spec.ts` (e.g. `series-coming-soon`, topic counts) |
+| New series/topic or “coming soon” → live | Relevant `e2e/*.spec.ts` (e.g. `e2e/sculpture-flow.spec.ts`, topic counts); follow `.cursor/skills/wia-series-content/SKILL.md` |
+| Live `APP_DATA` change affecting browse/quiz | Bump `?v=` in `lib/app-data.js` and `index.html` `app.js` script tag so browsers reload content |
 
 ## `app.js` / `index.html` / `style.css` (UI & flow)
 

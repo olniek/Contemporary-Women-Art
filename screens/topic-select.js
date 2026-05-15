@@ -1,4 +1,4 @@
-import { APP_DATA } from "../data.js";
+import { APP_DATA } from "../lib/app-data.js";
 import { wireCollectionSearch } from "../lib/collection-search-ui.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 import { exploredCardIds } from "../lib/explore-state.js";

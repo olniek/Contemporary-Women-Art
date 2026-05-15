@@ -26,8 +26,9 @@ All screen transitions go through `navigate(screen, payload)` in `app.js`. Never
 
 - `index.html` — HTML shell; meta/OG tags. Content is injected by JS.
 - `style.css` — CSS custom properties, screen visibility, flip cards, quiz, flow stepper, favorites.
-- `data.js` — `APP_DATA`, `LEGACY_QUIZ_QUESTIONS`, `getQuizQuestions(seriesId, topicId)`.
-- `app.js` — state, navigation, rendering (ES module; imports `data.js`).
+- `data.js` — `APP_DATA`, `LEGACY_QUIZ_QUESTIONS`, `getQuizQuestions(seriesId, topicId)` (source of truth for content).
+- `lib/app-data.js` — versioned re-export of `data.js` for the browser (bump `?v=` when live content changes so caches reload).
+- `app.js` — state, navigation, rendering (ES module; imports `lib/app-data.js`).
 - `lib/artist-retrieval.js` — flatten `APP_DATA` artists and keyword scoring for Ask / `api/ask`.
 - `api/ask.js` — Vercel serverless `POST /api/ask` (OpenAI + optional Wikipedia summaries). Requires `OPENAI_API_KEY`; see `.env.example`.
 
@@ -64,7 +65,9 @@ npm test
 
 **Favorites** are stored in `localStorage` as `{ artistId: true }` under the key `"wia_favorites"` (reads/writes wrapped in try/catch).
 
-**Adding content** — to add an artist, append an object to a topic’s `artists` array in `data.js`. Use `image: "images/artists/{artist.id}.jpg"` (or `.png` / `.svg`) and `imageAlt`. See [`docs/IMAGE_CREDITS.md`](docs/IMAGE_CREDITS.md). For sourcing bundled portraits from Wikimedia (or similar) via the manifest and download script, follow [`.cursor/skills/wia-artist-images/SKILL.md`](.cursor/skills/wia-artist-images/SKILL.md). Run `npm run check:images` after changing files. To add a per-topic quiz, add a `quiz` array of exactly 5 question objects to that topic. Optional `wikipediaTitle` helps the Ask feature resolve the correct English Wikipedia page when the article title differs from `name`.
+**Adding content** — to add an artist, append an object to a topic’s `artists` array in `data.js`. Use `image: "images/artists/{artist.id}.jpg"` (or `.png` / `.svg`) and `imageAlt`. See [`docs/IMAGE_CREDITS.md`](docs/IMAGE_CREDITS.md). For sourcing bundled portraits from Wikimedia (or similar) via the manifest and download script, follow [`.cursor/skills/wia-artist-images/SKILL.md`](.cursor/skills/wia-artist-images/SKILL.md). For launching or extending a whole series (topics, copy, quizzes, removing `coming-soon`), follow [`.cursor/skills/wia-series-content/SKILL.md`](.cursor/skills/wia-series-content/SKILL.md). Run `npm run check:images` after changing files. To add a per-topic quiz, add a `quiz` array of exactly 5 question objects to that topic. Optional `wikipediaTitle` helps the Ask feature resolve the correct English Wikipedia page when the article title differs from `name`.
+
+**After changing live `APP_DATA`** — bump the `?v=` query in [`lib/app-data.js`](lib/app-data.js) and the `app.js?v=` on the script tag in [`index.html`](index.html) so browsers do not keep a stale module (for example an old “Coming soon” series). Redeploy on Vercel after pushing.
 
 ## Ask (AI Q&A)
 

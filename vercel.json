@@ -1,0 +1,13 @@
+{
+  "headers": [
+    {
+      "source": "/(data\\.js|app\\.js|lib/.*\\.js|screens/.*\\.js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

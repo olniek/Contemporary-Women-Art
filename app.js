@@ -1,4 +1,4 @@
-import { APP_DATA } from "./data.js";
+import { APP_DATA } from "./lib/app-data.js";
 import { createElement, clearElement } from "./lib/dom-utils.js";
 import { exploredCardIds, resetExploreTracking } from "./lib/explore-state.js";
 import { collectFavoriteArtists as collectFavoriteArtistsData } from "./lib/favorites-logic.js";

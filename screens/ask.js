@@ -1,4 +1,4 @@
-import { APP_DATA } from "../data.js";
+import { APP_DATA } from "../lib/app-data.js";
 import { askApiUrl, probeAskEndpointStatus } from "../lib/ask-client.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 

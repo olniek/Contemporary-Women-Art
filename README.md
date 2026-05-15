@@ -46,6 +46,8 @@ That line appears when the browser’s current origin has no working `/api/ask` 
 3. **Redeploy** after adding or changing secrets so the running deployment receives them (Deployments → … → Redeploy, or push a commit).
 4. Deploy. Serverless functions are picked up from [`api/`](api/) automatically.
 
+[`vercel.json`](vercel.json) sets short cache lifetimes for `data.js`, `app.js`, and UI modules so content updates (for example taking a series live) reach browsers without a hard refresh. After editing [`data.js`](data.js) for the live app, also bump the version query in [`lib/app-data.js`](lib/app-data.js) and on the `app.js` script tag in [`index.html`](index.html).
+
 ### Troubleshooting: “Ask is not configured (missing OPENAI_API_KEY)” (HTTP 503)
 
 The API returns this when no key is visible **to that deployment**. Most often:
@@ -88,9 +90,15 @@ Playwright serves the app on port **9876** during tests (`playwright.config.ts`)
 
 Files live in `images/artists/` (see [`docs/IMAGE_CREDITS.md`](docs/IMAGE_CREDITS.md)). Placeholder SVGs can be regenerated with `node scripts/populate-artist-placeholders.mjs` (do not overwrite real photos).
 
+## Collection status
+
+All five disciplines in `APP_DATA` are **live** (Photography, Painting, Sculpture, Performance, Video Art). Sculpture has three topics (Body, Space, Material) with per-topic quizzes; see [`e2e/sculpture-flow.spec.ts`](e2e/sculpture-flow.spec.ts).
+
 ## Docs for contributors
 
 - **[CLAUDE.md](CLAUDE.md)** — architecture, quiz rules, Ask behavior, `data.js` conventions.
+- **[`.cursor/skills/wia-series-content/SKILL.md`](.cursor/skills/wia-series-content/SKILL.md)** — launch or extend any series (topics, copy, quizzes, going live).
+- **[`.cursor/skills/wia-artist-images/SKILL.md`](.cursor/skills/wia-artist-images/SKILL.md)** — portrait manifest, download, credits.
 
 ## Where things live
 
@@ -98,6 +106,7 @@ Files live in `images/artists/` (see [`docs/IMAGE_CREDITS.md`](docs/IMAGE_CREDIT
 |------|----------|
 | App entry, navigation, shared state | [`app.js`](app.js) |
 | Curated artists, topics, quizzes | [`data.js`](data.js) |
+| Browser import of `APP_DATA` (cache-busted) | [`lib/app-data.js`](lib/app-data.js) |
 | Per-screen UI (landing, ask, quiz, …) | [`screens/`](screens/) |
 | Shared helpers (DOM, search, hash route, Ask client) | [`lib/`](lib/) |
 | Layout and components | [`style.css`](style.css), [`index.html`](index.html) |

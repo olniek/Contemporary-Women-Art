@@ -1,4 +1,4 @@
-import { APP_DATA, shortSessionAnchorForDay } from "../data.js";
+import { APP_DATA, shortSessionAnchorForDay } from "../lib/app-data.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 import { readLastPlace } from "../lib/session-place.js";
 
