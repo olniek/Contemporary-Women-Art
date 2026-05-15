@@ -19,10 +19,15 @@ export function renderQuiz(ctx) {
   const header = document.getElementById("quiz-header");
   clearElement(header);
   const h2 = createElement("h2", "", series.label + " — Quiz");
+  const headerActions = createElement("div", "quiz-header-actions");
+  const askBtn = createElement("button", "btn btn-outline quiz-ask-btn", "Ask the collection");
+  askBtn.addEventListener("click", () => ctx.navigate("ask", { returnTo: "quiz" }));
   const backBtn = createElement("button", "btn-back", "← Exit Quiz");
   backBtn.addEventListener("click", () => ctx.navigate("topic-select"));
+  headerActions.appendChild(askBtn);
+  headerActions.appendChild(backBtn);
   header.appendChild(h2);
-  header.appendChild(backBtn);
+  header.appendChild(headerActions);
 
   const container = document.getElementById("quiz-container");
   clearElement(container);

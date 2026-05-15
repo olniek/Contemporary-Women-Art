@@ -18,7 +18,7 @@ You can also open `index.html` directly in a browser; ES modules and relative im
 
 Single-page app with 7 screens (landing, **ask**, series-select, topic-select, favorites, quiz, result). All screens exist in `index.html` as empty `<section class="screen">` containers. JavaScript controls visibility by toggling the `active` class.
 
-**Navigation flow:** landing → series-select → topic-select → quiz → result. **Ask** is reachable from landing (`Ask the collection`). Favorites is reachable from topic-select and returns to topic-select or series-select.
+**Navigation flow:** landing → series-select → topic-select → quiz → result. **Ask** is reachable from topic-select and quiz (`Ask the collection`); back returns to the screen you came from. Favorites is reachable from topic-select and returns to topic-select or series-select.
 
 All screen transitions go through `navigate(screen, payload)` in `app.js`. Never manipulate screen visibility outside of that function.
 
@@ -64,7 +64,7 @@ npm test
 
 **Favorites** are stored in `localStorage` as `{ artistId: true }` under the key `"wia_favorites"` (reads/writes wrapped in try/catch).
 
-**Adding content** — to add an artist, append an object to a topic’s `artists` array in `data.js`. Use `image: "images/artists/{artist.id}.jpg"` (or `.png` / `.svg`) and `imageAlt`. See [`docs/IMAGE_CREDITS.md`](docs/IMAGE_CREDITS.md). Run `npm run check:images` after changing files. To add a per-topic quiz, add a `quiz` array of exactly 5 question objects to that topic. Optional `wikipediaTitle` helps the Ask feature resolve the correct English Wikipedia page when the article title differs from `name`.
+**Adding content** — to add an artist, append an object to a topic’s `artists` array in `data.js`. Use `image: "images/artists/{artist.id}.jpg"` (or `.png` / `.svg`) and `imageAlt`. See [`docs/IMAGE_CREDITS.md`](docs/IMAGE_CREDITS.md). For sourcing bundled portraits from Wikimedia (or similar) via the manifest and download script, follow [`.cursor/skills/wia-artist-images/SKILL.md`](.cursor/skills/wia-artist-images/SKILL.md). Run `npm run check:images` after changing files. To add a per-topic quiz, add a `quiz` array of exactly 5 question objects to that topic. Optional `wikipediaTitle` helps the Ask feature resolve the correct English Wikipedia page when the article title differs from `name`.
 
 ## Ask (AI Q&A)
 

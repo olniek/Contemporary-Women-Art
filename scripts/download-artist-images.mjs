@@ -13,8 +13,8 @@ const root = join(__dirname, "..");
 const outDir = join(root, "images", "artists");
 const manifest = JSON.parse(
   await import("node:fs/promises").then((fs) =>
-    fs.readFile(join(__dirname, "commons-manifest.json"), "utf8")
-  )
+    fs.readFile(join(__dirname, "commons-manifest.json"), "utf8"),
+  ),
 );
 
 const UA =
@@ -41,10 +41,7 @@ async function removeDest(dest) {
 function download(url, dest) {
   return new Promise((resolve, reject) => {
     const file = createWriteStream(dest);
-    get(
-      url,
-      { headers: { "User-Agent": UA, Accept: "image/*,*/*;q=0.8" } },
-      (res) => {
+    get(url, { headers: { "User-Agent": UA, Accept: "image/*,*/*;q=0.8" } }, (res) => {
       if (res.statusCode === 301 || res.statusCode === 302) {
         file.close();
         void removeDest(dest);
@@ -78,8 +75,7 @@ function download(url, dest) {
         await removeDest(dest);
         reject(err);
       });
-    }
-    ).on("error", async (err) => {
+    }).on("error", async (err) => {
       file.close();
       await removeDest(dest);
       reject(err);
@@ -96,7 +92,7 @@ const onlySet = onlyArg
         .slice("--only=".length)
         .split(",")
         .map((s) => s.trim())
-        .filter(Boolean)
+        .filter(Boolean),
     )
   : null;
 

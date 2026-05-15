@@ -124,11 +124,16 @@ function renderTopicTabs(ctx) {
     tabs.appendChild(tab);
   });
 
+  const topicActions = createElement("div", "topic-tab-actions");
+  const askBtn = createElement("button", "btn btn-outline topic-ask-btn", "Ask the collection");
+  askBtn.addEventListener("click", () => ctx.navigate("ask", { returnTo: "topic-select" }));
   const quizBtn = createElement("button", "btn topic-quiz-btn", "Take Quiz →");
   quizBtn.id = "topic-quiz-btn";
   quizBtn.setAttribute("aria-describedby", "explore-readiness-note");
   quizBtn.addEventListener("click", () => ctx.navigate("quiz"));
-  tabs.appendChild(quizBtn);
+  topicActions.appendChild(askBtn);
+  topicActions.appendChild(quizBtn);
+  tabs.appendChild(topicActions);
 }
 
 function renderArtistCards(ctx) {

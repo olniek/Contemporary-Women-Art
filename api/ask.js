@@ -209,7 +209,7 @@ export async function handleAsk(req, res, deps = {}) {
       license: x.wiki.license_short_description || "CC BY-SA",
     }));
 
-  const system = `You are a helpful assistant for the educational web app "Female Contemporary Artist 1."
+  const system = `You are a helpful assistant for the educational web app "Female Contemporary Artists."
 Answer ONLY using the provided curated artist records (primary for interpretation and thematic framing) and optional Wikipedia extracts (supplementary biographical or general facts).
 Rules:
 - Prefer curated fields (insight, keyWork, movement) when they conflict with Wikipedia.

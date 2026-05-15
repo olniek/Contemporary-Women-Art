@@ -70,8 +70,7 @@ test("mobile smoke: Ask shows stubbed API answer", async ({ page }) => {
     });
   });
 
-  await page.goto("/index.html");
-  await page.getByRole("button", { name: "Ask the collection" }).click();
+  await page.goto("/index.html#/ask");
   await page.getByRole("textbox", { name: "Your question" }).fill("Test question on mobile?");
   await page.getByRole("button", { name: "Submit" }).click();
 

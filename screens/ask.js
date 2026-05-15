@@ -3,7 +3,10 @@ import { askApiUrl, probeAskEndpointStatus } from "../lib/ask-client.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 
 /**
- * @param {{ navigate: (s: string, p?: object) => void }} ctx
+ * @param {{
+ *   navigate: (s: string, p?: object) => void,
+ *   askReturnScreen?: string,
+ * }} ctx
  */
 export function renderAsk(ctx) {
   const screen = document.getElementById("screen-ask");
@@ -12,7 +15,8 @@ export function renderAsk(ctx) {
   const header = createElement("header", "screen-header ask-header");
   const h2 = createElement("h2", "", "Ask the collection");
   const backBtn = createElement("button", "btn-back", "← Back");
-  backBtn.addEventListener("click", () => ctx.navigate("landing"));
+  const returnTo = ctx.askReturnScreen ?? "landing";
+  backBtn.addEventListener("click", () => ctx.navigate(returnTo));
   header.appendChild(h2);
   header.appendChild(backBtn);
 

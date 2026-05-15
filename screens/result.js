@@ -205,10 +205,10 @@ export function renderResult(ctx) {
   );
   shareBtn.type = "button";
   shareBtn.addEventListener("click", async () => {
-    const text = `Female Contemporary Artist 1 — ${series.label}: ${topic.label}. Quiz score ${score}/${total}.`;
+    const text = `Female Contemporary Artists — ${series.label}: ${topic.label}. Quiz score ${score}/${total}.`;
     try {
       if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
-        await navigator.share({ title: "Female Contemporary Artist 1", text });
+        await navigator.share({ title: "Female Contemporary Artists", text });
       } else if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(text);
       }
