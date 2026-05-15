@@ -6,6 +6,7 @@ import { createElement, clearElement } from "../lib/dom-utils.js";
  * @param {{
  *   navigate: (s: string, p?: object) => void,
  *   askReturnScreen?: string,
+ *   initialQuestion?: string | null,
  * }} ctx
  */
 export function renderAsk(ctx) {
@@ -75,6 +76,11 @@ export function renderAsk(ctx) {
   ta.rows = 4;
   ta.setAttribute("aria-label", "Your question");
   ta.placeholder = "e.g. Who uses kitchen-table staging to explore Black women’s lives?";
+
+  const initialQuestion = ctx.initialQuestion?.trim() || "";
+  if (initialQuestion) {
+    ta.value = initialQuestion;
+  }
 
   const submit = createElement("button", "btn btn-filled", "Submit");
 
@@ -216,6 +222,13 @@ export function renderAsk(ctx) {
 
   form.appendChild(ta);
   form.appendChild(submit);
+
+  if (initialQuestion) {
+    const followHint = createElement("p", "ask-followup-hint", "Follow-up ready — edit or submit.");
+    followHint.setAttribute("role", "note");
+    form.appendChild(followHint);
+    requestAnimationFrame(() => ta.focus());
+  }
 
   const howWrap = createElement("div", "ask-how-wrap");
   howWrap.appendChild(howBtn);

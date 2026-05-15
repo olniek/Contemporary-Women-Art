@@ -30,6 +30,8 @@ All screen transitions go through `navigate(screen, payload)` in `app.js`. Never
 - `lib/app-data.js` — versioned re-export of `data.js` for the browser (bump `?v=` when live content changes so caches reload).
 - `app.js` — state, navigation, rendering (ES module; imports `lib/app-data.js`).
 - `lib/artist-retrieval.js` — flatten `APP_DATA` artists and keyword scoring for Ask / `api/ask`.
+- `lib/wiki-summary.js` — English Wikipedia REST summaries (shared by `api/ask.js` and Learn more dialog).
+- `lib/artist-detail-panel.js` — in-app artist detail `<dialog>` (curated fields + optional wiki excerpt).
 - `api/ask.js` — Vercel serverless `POST /api/ask` (OpenAI + optional Wikipedia summaries). Requires `OPENAI_API_KEY`; see `.env.example`.
 
 ## Quiz data rules
@@ -61,7 +63,7 @@ npm test
 
 ## Key implementation details
 
-**Flip cards** require three nested elements: `.card-scene` (perspective host, stationary), `.card` (rotates on `.is-flipped`), `.card-front` / `.card-back` (both need `backface-visibility: hidden`; back is pre-rotated 180deg in CSS). The heart button lives on `.card-scene`, not inside `.card`, so it never flips.
+**Flip cards** require three nested elements: `.card-scene` (perspective host, stationary), `.card` (rotates on `.is-flipped`), `.card-front` / `.card-back` (both need `backface-visibility: hidden`; back is pre-rotated 180deg in CSS). The heart button lives on `.card-scene`, not inside `.card`, so it never flips. **Learn more** on the card back opens an in-app detail dialog (curated fields + optional Wikipedia excerpt); **Ask a follow-up** navigates to Ask with a prefilled question.
 
 **Favorites** are stored in `localStorage` as `{ artistId: true }` under the key `"wia_favorites"` (reads/writes wrapped in try/catch).
 

@@ -3,7 +3,7 @@ import { wireCollectionSearch } from "../lib/collection-search-ui.js";
 import { createElement, clearElement } from "../lib/dom-utils.js";
 import { exploredCardIds } from "../lib/explore-state.js";
 import { createFlowStepper } from "../lib/flow-stepper.js";
-import { wikiSearchUrl } from "../lib/wiki-helpers.js";
+import { openArtistDetailPanel } from "../lib/artist-detail-panel.js";
 
 /**
  * @param {{
@@ -196,13 +196,21 @@ function createArtistCard(artist, ctx) {
   back.appendChild(meta);
 
   const learnP = createElement("p", "card-learn-more");
-  const learnA = document.createElement("a");
-  learnA.className = "card-learn-link";
-  learnA.href = wikiSearchUrl(artist.name);
-  learnA.target = "_blank";
-  learnA.rel = "noopener noreferrer";
-  learnA.textContent = "Learn more about the artist";
-  learnP.appendChild(learnA);
+  const learnBtn = document.createElement("button");
+  learnBtn.type = "button";
+  learnBtn.className = "card-learn-btn";
+  learnBtn.textContent = "Learn more about the artist";
+  const topicLabel =
+    APP_DATA.series[ctx.state.selectedSeries]?.topics[ctx.state.selectedTopic]?.label ?? "";
+  learnBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openArtistDetailPanel(artist, {
+      topicLabel,
+      onAskFollowUp: (question) =>
+        ctx.navigate("ask", { returnTo: "topic-select", initialQuestion: question }),
+    });
+  });
+  learnP.appendChild(learnBtn);
   back.appendChild(learnP);
 
   card.appendChild(front);
@@ -215,7 +223,7 @@ function createArtistCard(artist, ctx) {
   card.setAttribute("aria-label", "Learn about " + artist.name + ". Activate to read insight.");
 
   card.addEventListener("click", (e) => {
-    if (e.target.closest(".card-learn-link")) return;
+    if (e.target.closest(".card-learn-btn")) return;
     const flipped = card.classList.toggle("is-flipped");
     card.setAttribute("aria-pressed", String(flipped));
     card.setAttribute(
@@ -230,7 +238,7 @@ function createArtistCard(artist, ctx) {
 
   card.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
-      if (e.target.closest(".card-learn-link")) return;
+      if (e.target.closest(".card-learn-btn")) return;
       e.preventDefault();
       card.click();
     }

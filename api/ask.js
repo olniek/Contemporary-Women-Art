@@ -4,9 +4,8 @@
  */
 import { APP_DATA } from "../data.js";
 import { flattenArtists, topKArtists } from "../lib/artist-retrieval.js";
+import { fetchWikiSummary } from "../lib/wiki-summary.js";
 
-const wikiCache = new Map();
-const WIKI_CACHE_MAX = 80;
 const MAX_QUESTION_CHARS = 2000;
 
 /** Trimmed key; supports OPENAI_KEY alias if OPENAI_API_KEY was misnamed in the dashboard. */
@@ -28,53 +27,6 @@ function corsHeaders() {
     h["Access-Control-Allow-Origin"] = "*";
   }
   return h;
-}
-
-async function fetchWikiSummary(title) {
-  const key = title.trim();
-  if (wikiCache.has(key)) return wikiCache.get(key);
-
-  const encoded = encodeURIComponent(key.replace(/\s+/g, "_"));
-  const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encoded}`;
-
-  try {
-    const r = await fetch(url, {
-      headers: {
-        Accept: "application/json",
-        "User-Agent": "WomenInContemporaryArt/1.0 (educational art catalog; local retrieval)",
-      },
-    });
-    if (!r.ok) {
-      wikiCache.set(key, null);
-      while (wikiCache.size > WIKI_CACHE_MAX) {
-        const first = wikiCache.keys().next().value;
-        wikiCache.delete(first);
-      }
-      return null;
-    }
-    const j = await r.json();
-    const desktop = j.content_urls?.desktop;
-    const pageUrl = typeof desktop === "string" ? desktop : desktop?.page || desktop?.url || "";
-    const out = {
-      title: j.title,
-      extract: j.extract || "",
-      pageUrl,
-      license_short_description: j.license_short_description || "",
-    };
-    wikiCache.set(key, out);
-    while (wikiCache.size > WIKI_CACHE_MAX) {
-      const first = wikiCache.keys().next().value;
-      wikiCache.delete(first);
-    }
-    return out;
-  } catch {
-    wikiCache.set(key, null);
-    while (wikiCache.size > WIKI_CACHE_MAX) {
-      const first = wikiCache.keys().next().value;
-      wikiCache.delete(first);
-    }
-    return null;
-  }
 }
 
 async function callOpenAI(system, user) {

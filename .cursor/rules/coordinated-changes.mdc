@@ -23,6 +23,7 @@ When you change one area, finish the job: update **all** artifacts that depend o
 |--------|------------------|
 | New screen, renamed screen, or navigation | Only `navigate()` / `renderScreen()` for visibility; wire `index.html` section if needed; styles in `style.css`; e2e if user paths change |
 | Favorites, quiz UI, landing CTAs | Matching `e2e/*.spec.ts` |
+| Learn more dialog, `lib/wiki-summary.js` | `test/wiki-summary.test.mjs`; `e2e/artist-learn-more.spec.ts`; README / CLAUDE if user-facing |
 
 ## `lib/artist-retrieval.js`
 

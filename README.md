@@ -1,6 +1,6 @@
 # Female Contemporary Artists
 
-An interactive web app for learning contemporary art through women artists — exploration by discipline and topic, flip cards with curator-style insights, favorites, a short quiz, and optional **Ask the collection** (AI Q&A grounded in this project’s data).
+An interactive web app for learning contemporary art through women artists — exploration by discipline and topic, flip cards with curator-style insights, in-app **Learn more** detail panels (optional Wikipedia excerpts), favorites, a short quiz, and optional **Ask the collection** (AI Q&A grounded in this project’s data).
 
 **For a full demo (including Ask):** deploy to [Vercel](https://vercel.com) or run `npx vercel dev` — see [Ask the collection](#ask-the-collection-ai-qa) and [`docs/ASK-BY-TOMORROW.md`](docs/ASK-BY-TOMORROW.md). Static `python3 -m http.server` is fine for browse, quiz, and favorites only.
 
@@ -14,15 +14,23 @@ python3 -m http.server 8000
 
 Open `http://127.0.0.1:8000/index.html`.
 
-Browsing this way runs **only** the front-end. The **Ask** screen needs a serverless host or local `vercel dev` (see below).
+Browsing this way runs **only** the front-end. The **Ask** screen needs a serverless host or local `vercel dev` (see below). **Learn more** on a flipped artist card still works on static hosting (curated copy + optional Wikipedia summary fetched in the browser).
 
 **Need Ask working soon?** Follow the plain-language checklist: [`docs/ASK-BY-TOMORROW.md`](docs/ASK-BY-TOMORROW.md).
+
+## Learn more (artist detail)
+
+On the back of each flip card, **Learn more about the artist** opens an in-app dialog ([`lib/artist-detail-panel.js`](lib/artist-detail-panel.js)) instead of leaving for Wikipedia search.
+
+- **Curated first:** name, years, insight, key work, and movement from [`data.js`](data.js).
+- **Optional background:** a short English Wikipedia excerpt when an article is found ([`lib/wiki-summary.js`](lib/wiki-summary.js), same REST helper as Ask). A small footer link opens the full article for attribution.
+- **Ask a follow-up:** closes the dialog and opens **Ask the collection** with a prefilled question (requires `/api/ask` as below). Optional `wikipediaTitle` on an artist improves Wikipedia resolution when the article title differs from `name`.
 
 ## Ask the collection (AI Q&A)
 
 **Ask the collection** is available from **topic browse** and the **quiz** screen (not the landing page). It calls `POST /api/ask`:
 
-- **Implementation:** [`api/ask.js`](api/ask.js) — keyword retrieval over [`data.js`](data.js), optional English Wikipedia summaries, then OpenAI (`gpt-4o-mini` by default).
+- **Implementation:** [`api/ask.js`](api/ask.js) — keyword retrieval over [`data.js`](data.js), optional English Wikipedia summaries via [`lib/wiki-summary.js`](lib/wiki-summary.js), then OpenAI (`gpt-4o-mini` by default).
 - **Secrets:** set `OPENAI_API_KEY` on the server (never in the browser). Copy [`.env.example`](.env.example) to `.env.local` for local Vercel dev.
 - **Static server only:** `python3 -m http.server` does **not** provide `/api/ask`; the UI will show a connection error unless you deploy or use `vercel dev`.
 - **Cross-origin:** if the HTML is hosted on a **different origin** than `/api/ask` (for example static pages on `https://gallery.example` and the API on `https://api.example`):
@@ -111,6 +119,8 @@ All five disciplines in `APP_DATA` are **live** (Photography, Painting, Sculptur
 | Browser import of `APP_DATA` (cache-busted) | [`lib/app-data.js`](lib/app-data.js) |
 | Per-screen UI (landing, ask, quiz, …) | [`screens/`](screens/) |
 | Shared helpers (DOM, search, hash route, Ask client) | [`lib/`](lib/) |
+| Wikipedia page summaries (Ask + Learn more) | [`lib/wiki-summary.js`](lib/wiki-summary.js) |
+| In-app artist detail dialog | [`lib/artist-detail-panel.js`](lib/artist-detail-panel.js) |
 | Layout and components | [`style.css`](style.css), [`index.html`](index.html) |
 | Ask serverless route | [`api/ask.js`](api/ask.js) |
 | End-to-end tests | [`e2e/`](e2e/) |

@@ -29,6 +29,7 @@ import { renderTopicSelect } from "./screens/topic-select.js";
 const state = {
   currentScreen: "landing",
   askReturnScreen: "landing",
+  askInitialQuestion: null,
   selectedSeries: null,
   selectedTopic: null,
   pendingScrollToArtistId: null,
@@ -314,6 +315,10 @@ function navigate(screen, payload = {}) {
 
   if (screen === "ask") {
     state.askReturnScreen = payload.returnTo ?? "landing";
+    state.askInitialQuestion =
+      typeof payload.initialQuestion === "string" && payload.initialQuestion.trim()
+        ? payload.initialQuestion.trim()
+        : null;
   }
 
   if (screen === "quiz") {
@@ -348,8 +353,11 @@ function renderScreen() {
     if (state.currentScreen === "landing") {
       renderLanding({ navigate, seriesInventorySummary, collectFavoriteArtists });
     }
-    if (state.currentScreen === "ask")
-      renderAsk({ navigate, askReturnScreen: state.askReturnScreen });
+    if (state.currentScreen === "ask") {
+      const initialQuestion = state.askInitialQuestion;
+      state.askInitialQuestion = null;
+      renderAsk({ navigate, askReturnScreen: state.askReturnScreen, initialQuestion });
+    }
     if (state.currentScreen === "series-select") renderSeriesSelect({ navigate });
     if (state.currentScreen === "topic-select") renderTopicSelect(buildTopicCtx());
     if (state.currentScreen === "favorites") {
