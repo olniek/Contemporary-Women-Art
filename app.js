@@ -78,7 +78,7 @@ function syncFavoritesStorageBanner() {
     chip.type = "button";
     chip.setAttribute(
       "aria-label",
-      "Storage issue: favorites may not save in this browser. Activate to show details."
+      "Storage issue: favorites may not save in this browser. Activate to show details.",
     );
     chip.addEventListener("click", () => {
       favoritesStorageBannerDismissed = false;
@@ -92,7 +92,7 @@ function syncFavoritesStorageBanner() {
   const p = createElement(
     "p",
     "favorites-storage-banner-text",
-    "Favorites could not be saved in this browser (private mode or full storage). Hearts may not persist after you leave."
+    "Favorites could not be saved in this browser (private mode or full storage). Hearts may not persist after you leave.",
   );
   const btn = createElement("button", "btn btn-outline favorites-storage-dismiss", "Dismiss");
   btn.type = "button";
@@ -260,7 +260,7 @@ function showFatalRenderError(err) {
   const p = createElement(
     "p",
     "app-fatal-error-body",
-    "The app hit an unexpected error. You can reload the page to try again."
+    "The app hit an unexpected error. You can reload the page to try again.",
   );
   const btn = createElement("button", "btn btn-filled", "Reload");
   btn.type = "button";
@@ -348,7 +348,8 @@ function renderScreen() {
     if (state.currentScreen === "landing") {
       renderLanding({ navigate, seriesInventorySummary, collectFavoriteArtists });
     }
-    if (state.currentScreen === "ask") renderAsk({ navigate, askReturnScreen: state.askReturnScreen });
+    if (state.currentScreen === "ask")
+      renderAsk({ navigate, askReturnScreen: state.askReturnScreen });
     if (state.currentScreen === "series-select") renderSeriesSelect({ navigate });
     if (state.currentScreen === "topic-select") renderTopicSelect(buildTopicCtx());
     if (state.currentScreen === "favorites") {

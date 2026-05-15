@@ -67,7 +67,7 @@ npm test
 
 **Adding content** — to add an artist, append an object to a topic’s `artists` array in `data.js`. Use `image: "images/artists/{artist.id}.jpg"` (or `.png` / `.svg`) and `imageAlt`. See [`docs/IMAGE_CREDITS.md`](docs/IMAGE_CREDITS.md). For sourcing bundled portraits from Wikimedia (or similar) via the manifest and download script, follow [`.cursor/skills/wia-artist-images/SKILL.md`](.cursor/skills/wia-artist-images/SKILL.md). For launching or extending a whole series (topics, copy, quizzes, removing `coming-soon`), follow [`.cursor/skills/wia-series-content/SKILL.md`](.cursor/skills/wia-series-content/SKILL.md). Run `npm run check:images` after changing files. To add a per-topic quiz, add a `quiz` array of exactly 5 question objects to that topic. Optional `wikipediaTitle` helps the Ask feature resolve the correct English Wikipedia page when the article title differs from `name`.
 
-**After changing live `APP_DATA`** — bump the `?v=` query in [`lib/app-data.js`](lib/app-data.js) and the `app.js?v=` on the script tag in [`index.html`](index.html) so browsers do not keep a stale module (for example an old “Coming soon” series). Redeploy on Vercel after pushing.
+**After changing live `APP_DATA`** — bump `APP_ASSET_VERSION` in [`lib/app-version.js`](lib/app-version.js) and the matching `app.js?v=` on the script tag in [`index.html`](index.html) so browsers do not keep a stale module (for example an old “Coming soon” series). `lib/app-data.js` reads the version automatically. Redeploy on Vercel after pushing.
 
 ## Ask (AI Q&A)
 

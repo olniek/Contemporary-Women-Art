@@ -54,10 +54,7 @@ async function fetchWikiSummary(title) {
     }
     const j = await r.json();
     const desktop = j.content_urls?.desktop;
-    const pageUrl =
-      typeof desktop === "string"
-        ? desktop
-        : desktop?.page || desktop?.url || "";
+    const pageUrl = typeof desktop === "string" ? desktop : desktop?.page || desktop?.url || "";
     const out = {
       title: j.title,
       extract: j.extract || "",
@@ -196,7 +193,7 @@ export async function handleAsk(req, res, deps = {}) {
       const title = a.wikipediaTitle || a.name;
       const wiki = await fetchWiki(title);
       return { artistId: a.id, artistName: a.name, requestedTitle: title, wiki };
-    })
+    }),
   );
 
   const wikipedia = wikiSummaries
@@ -220,11 +217,11 @@ Rules:
   const user = `User question:\n${question}\n\nCurated artist records (JSON):\n${JSON.stringify(
     curatedPayload,
     null,
-    2
+    2,
   )}\n\nWikipedia summaries (optional; JSON — may be empty for some artists):\n${JSON.stringify(
     wikipedia,
     null,
-    2
+    2,
   )}`;
 
   try {

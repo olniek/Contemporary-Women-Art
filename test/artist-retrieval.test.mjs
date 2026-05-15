@@ -90,3 +90,72 @@ test("topKArtists finds Zanele Muholi from real data", () => {
   const top = topKArtists("Zanele Muholi portraits South Africa", artists, 5);
   assert.ok(top.some((a) => a.id === "zanele_muholi"));
 });
+
+test("flattenArtists includes keywords and wikipediaTitle when set", () => {
+  const withMeta = {
+    series: {
+      s1: {
+        id: "s1",
+        label: "Series",
+        topics: {
+          t1: {
+            id: "t1",
+            label: "Topic",
+            artists: [
+              {
+                id: "test_artist",
+                name: "Test Artist",
+                years: "b. 2000",
+                insight: "Uses video.",
+                keyWork: "Work (2020)",
+                movement: "Video",
+                keywords: ["pixelvision", "diary"],
+                wikipediaTitle: "Test Artist (special)",
+              },
+            ],
+          },
+        },
+      },
+    },
+  };
+  const flat = flattenArtists(withMeta);
+  assert.equal(flat[0].wikipediaTitle, "Test Artist (special)");
+  assert.deepEqual(flat[0].keywords, ["pixelvision", "diary"]);
+});
+
+test("scoreQuestionAgainstArtists matches artist keywords", () => {
+  const withMeta = {
+    series: {
+      s1: {
+        id: "s1",
+        label: "Series",
+        topics: {
+          t1: {
+            id: "t1",
+            label: "Topic",
+            artists: [
+              {
+                id: "diary_artist",
+                name: "Diary Artist",
+                years: "b. 1990",
+                insight: "Confessional work.",
+                keyWork: "Diary (2010)",
+                movement: "Video",
+                keywords: ["pixelvision", "queer diary"],
+              },
+            ],
+          },
+        },
+      },
+    },
+  };
+  const artists = flattenArtists(withMeta);
+  const ranked = scoreQuestionAgainstArtists("pixelvision queer diary", artists);
+  assert.equal(ranked[0].artist.id, "diary_artist");
+});
+
+test("topKArtists finds Pope.L via keywords on real data", () => {
+  const artists = flattenArtists(APP_DATA);
+  const top = topKArtists("crawl Broadway abjection", artists, 5);
+  assert.ok(top.some((a) => a.id === "pope_l"));
+});

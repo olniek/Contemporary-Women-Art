@@ -1,6 +1,8 @@
-# Female Contemporary Artist 1
+# Female Contemporary Artists
 
 An interactive web app for learning contemporary art through women artists — exploration by discipline and topic, flip cards with curator-style insights, favorites, a short quiz, and optional **Ask the collection** (AI Q&A grounded in this project’s data).
+
+**For a full demo (including Ask):** deploy to [Vercel](https://vercel.com) or run `npx vercel dev` — see [Ask the collection](#ask-the-collection-ai-qa) and [`docs/ASK-BY-TOMORROW.md`](docs/ASK-BY-TOMORROW.md). Static `python3 -m http.server` is fine for browse, quiz, and favorites only.
 
 ## Run locally (static)
 
@@ -18,7 +20,7 @@ Browsing this way runs **only** the front-end. The **Ask** screen needs a server
 
 ## Ask the collection (AI Q&A)
 
-The landing page links to **Ask the collection**, which calls `POST /api/ask`:
+**Ask the collection** is available from **topic browse** and the **quiz** screen (not the landing page). It calls `POST /api/ask`:
 
 - **Implementation:** [`api/ask.js`](api/ask.js) — keyword retrieval over [`data.js`](data.js), optional English Wikipedia summaries, then OpenAI (`gpt-4o-mini` by default).
 - **Secrets:** set `OPENAI_API_KEY` on the server (never in the browser). Copy [`.env.example`](.env.example) to `.env.local` for local Vercel dev.
@@ -46,7 +48,7 @@ That line appears when the browser’s current origin has no working `/api/ask` 
 3. **Redeploy** after adding or changing secrets so the running deployment receives them (Deployments → … → Redeploy, or push a commit).
 4. Deploy. Serverless functions are picked up from [`api/`](api/) automatically.
 
-[`vercel.json`](vercel.json) sets short cache lifetimes for `data.js`, `app.js`, and UI modules so content updates (for example taking a series live) reach browsers without a hard refresh. After editing [`data.js`](data.js) for the live app, also bump the version query in [`lib/app-data.js`](lib/app-data.js) and on the `app.js` script tag in [`index.html`](index.html).
+[`vercel.json`](vercel.json) sets short cache lifetimes for `data.js`, `app.js`, and UI modules so content updates reach browsers without a hard refresh. After editing [`data.js`](data.js) for the live app, bump `APP_ASSET_VERSION` in [`lib/app-version.js`](lib/app-version.js) (used by [`lib/app-data.js`](lib/app-data.js) and the `app.js` script tag in [`index.html`](index.html)).
 
 ### Troubleshooting: “Ask is not configured (missing OPENAI_API_KEY)” (HTTP 503)
 

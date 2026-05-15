@@ -106,7 +106,7 @@ test("explore another topic advances within Photography", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Documentary" })).toHaveClass(/active/);
 });
 
-test("video art Narrative topic uses legacy bank (three options)", async ({ page }) => {
+test("video art Narrative topic uses dedicated topic bank", async ({ page }) => {
   await page.goto("/index.html");
   await page.getByRole("button", { name: "Begin" }).click();
   await page.getByRole("button", { name: "Video Art" }).click();
@@ -114,8 +114,7 @@ test("video art Narrative topic uses legacy bank (three options)", async ({ page
   await flipTwoArtistCards(page);
   await page.getByRole("button", { name: "Take Quiz →" }).click();
 
-  await expect(page.getByRole("radio")).toHaveCount(3);
-  await expect(page.locator(".quiz-bank-framing")).toContainText(
-    /shared five-question skills quiz/i,
-  );
+  await expect(page.getByRole("radio")).toHaveCount(4);
+  await expect(page.locator(".quiz-bank-framing")).toHaveCount(0);
+  await expect(page.locator(".quiz-question")).toContainText(/Birnbaum.*Wonder Woman/i);
 });

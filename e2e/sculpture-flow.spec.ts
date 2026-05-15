@@ -5,9 +5,7 @@ async function openSculptureBody(page: import("@playwright/test").Page) {
   await page.getByRole("button", { name: "Begin" }).click();
   await page.getByRole("button", { name: "Sculpture" }).click();
   await expect(page.getByRole("heading", { name: "Sculpture" })).toBeVisible();
-  await expect(
-    page.getByText(/Sculpture that makes the body visible/i),
-  ).toBeVisible();
+  await expect(page.getByText(/Sculpture that makes the body visible/i)).toBeVisible();
 }
 
 test("Sculpture series opens topic-select with editorial copy", async ({ page }) => {
@@ -37,9 +35,7 @@ test("Sculpture body quiz shows topic-specific questions", async ({ page }) => {
   await page.getByRole("button", { name: "Take Quiz →" }).click();
 
   await expect(page.getByRole("heading", { name: /Sculpture — Quiz/ })).toBeVisible();
-  await expect(
-    page.getByText(/Louise Bourgeois's giant spider sculptures/i),
-  ).toBeVisible();
+  await expect(page.getByText(/Louise Bourgeois's giant spider sculptures/i)).toBeVisible();
 });
 
 test("Sculpture space topic shows artists and topic quiz", async ({ page }) => {

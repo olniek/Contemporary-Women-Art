@@ -16,10 +16,15 @@ test("getQuizQuestions uses series bank when topic has no five-item quiz", () =>
   assert.match(bank[0].question, /Frankenthaler|soak-stain/i);
 });
 
-test("getQuizQuestions falls back to legacy bank when neither topic nor series has five items", () => {
+test("getQuizQuestions uses topic bank for video art Narrative", () => {
   const bank = getQuizQuestions("videoArt", "narrativeIdentity");
   assert.equal(bank.length, 5);
-  assert.equal(bank[0].question, LEGACY_QUIZ_QUESTIONS[0].question);
+  assert.match(bank[0].question, /Birnbaum|Wonder Woman/i);
+});
+
+test("LEGACY_QUIZ_QUESTIONS remains the five-item cross-discipline fallback", () => {
+  assert.equal(LEGACY_QUIZ_QUESTIONS.length, 5);
+  assert.match(LEGACY_QUIZ_QUESTIONS[0].question, /Madonna or saint/i);
 });
 
 test("getQuizQuestions fills curatorNote from explanation when missing", () => {
