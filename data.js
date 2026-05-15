@@ -530,7 +530,71 @@ export const APP_DATA = {
               keyWork: "Au Naturel (1994)",
               movement: "YBA / Feminist Art"
             }
-          ]
+          ],
+          quiz: [
+            {
+              question: "Louise Bourgeois's giant spider sculptures, Maman, represent what personal figure?",
+              options: [
+                "Her father, who ran a tapestry restoration business",
+                "An imaginary childhood monster she feared",
+                "Her mother, whom she described as patient, protective, and industrious as a weaver",
+                "A symbol of female predation in mythology",
+              ],
+              correct: 2,
+              explanation:
+                "Bourgeois often said: 'My best friend was my mother — she was deliberate, clever, patient, soothing, reasonable, dainty, indispensable, neat, and as useful as a spider.'",
+            },
+            {
+              question: "Kiki Smith's Tale (1992) is notable for depicting the female body how?",
+              options: [
+                "As an idealized classical nude on a pedestal",
+                "Crawling, with viscera and bodily processes culture treats as taboo",
+                "Only from behind, with the face never shown",
+                "Merged with landscape so the figure disappears entirely",
+              ],
+              correct: 1,
+              explanation:
+                "Smith makes interior life visible—organs, trailing matter, processes usually hidden—refusing a single polite image of the female body.",
+              curatorNote:
+                "Ask what the work exposes that galleries usually smooth away; taboo is often the subject, not a shock tactic.",
+            },
+            {
+              question: "Sarah Lucas's Au Naturel (1994) primarily uses what strategy?",
+              options: [
+                "Cast bronze replicas of ancient fertility figures",
+                "Everyday objects such as mattresses and food to mock sexual objectification with sardonic wit",
+                "Medical illustrations enlarged to monumental scale",
+                "Live performance documented in a single photograph",
+              ],
+              correct: 1,
+              explanation:
+                "Lucas deconstructs objectification through crude readymades—mattresses, cigarettes, fried eggs—rather than earnest protest slogans.",
+            },
+            {
+              question: "Across Bourgeois, Smith, and Lucas, body sculpture in this topic most often refuses what?",
+              options: [
+                "Any reference to family or memory",
+                "A single, decorous image of the female body",
+                "Use of non-traditional materials",
+                "Monumental public scale",
+              ],
+              correct: 1,
+              explanation:
+                "Each artist externalizes psychology, taboo, or desire in matter—none offers a polite, unified figure.",
+            },
+            {
+              question: "Bourgeois linked the spider form to her mother's role as what?",
+              options: [
+                "A sculptor who carved marble portraits",
+                "A weaver—patient, protective, and industrious",
+                "A dancer in the Ballets Russes",
+                "A war correspondent during World War II",
+              ],
+              correct: 1,
+              explanation:
+                "She described her mother as deliberate and useful 'as a spider,' tying Maman to weaving, care, and labor—not predation alone.",
+            },
+          ],
         },
         space: {
           id: "space",
@@ -588,7 +652,71 @@ export const APP_DATA = {
               keyWork: "For Paul (1992)",
               movement: "Contemporary Sculpture"
             }
-          ]
+          ],
+          quiz: [
+            {
+              question: "Rachel Whiteread is best known for casting what?",
+              options: [
+                "The faces of living subjects in plaster",
+                "The negative space inside and around everyday objects",
+                "Bronze figurative sculptures of historical figures",
+                "Large-scale outdoor landscape interventions",
+              ],
+              correct: 1,
+              explanation:
+                "Ghost cast the interior air of an entire Victorian living room. House cast the inside of a condemned terraced house. Whiteread makes absence visible and solid.",
+              curatorNote:
+                "Cast voids flip your attention from object to air—ask what room or life the solidified absence once held.",
+            },
+            {
+              question: "Maya Lin's Vietnam Veterans Memorial deliberately avoids what?",
+              options: [
+                "Using the color black",
+                "Any reference to the war's geography",
+                "Naming individual soldiers",
+                "Heroic imagery — it lists only names, cut into the earth",
+              ],
+              correct: 3,
+              explanation:
+                "Lin's design was deeply controversial precisely because it refuses triumphalism. There are no soldiers, weapons, or eagles — only names in polished black granite that reflects visitors' own images.",
+            },
+            {
+              question: "Ursula von Rydingsvard's cedar sculptures often evoke what surfaces?",
+              options: [
+                "Polished machine-finished aluminum",
+                "Eroded landscape or interior organs gouged from wood",
+                "Neon-lit commercial signage",
+                "Glass vitrines containing preserved specimens",
+              ],
+              correct: 1,
+              explanation:
+                "She cuts thousands of cedar beams with chainsaws and chisels until the mass feels like land or hidden bodily forms—scale is part of the argument.",
+            },
+            {
+              question: "Visitors to Lin's memorial characteristically see what in the polished granite?",
+              options: [
+                "Only aerial maps of Vietnam",
+                "Their own reflection among the names of the dead",
+                "Bronze statues of soldiers in action",
+                "A continuous loop of news footage",
+              ],
+              correct: 1,
+              explanation:
+                "The chevron cut into the earth lists names while mirroring the living viewer—mourning becomes shared, not distant spectacle.",
+            },
+            {
+              question: "Spatial sculpture in this topic asks the viewer to do what first?",
+              options: [
+                "Read a wall label from a fixed distance only",
+                "Move through absence, monument, or scale—not only look from one spot",
+                "Ignore material in favor of biography",
+                "Compare auction prices across artists",
+              ],
+              correct: 1,
+              explanation:
+                "Whiteread's casts, Lin's cut in the earth, and von Rydingsvard's masses all reorganize how your body relates to the work.",
+            },
+          ],
         },
         material: {
           id: "material",
@@ -646,8 +774,72 @@ export const APP_DATA = {
               keyWork: "Brick House (2019)",
               movement: "Black Feminism / Sculpture"
             }
-          ]
-        }
+          ],
+          quiz: [
+            {
+              question: "Eva Hesse's post-minimalist sculptures are characterized by using what kinds of materials?",
+              options: [
+                "Industrial and organic materials like latex, rope, and fiberglass that sag and decay",
+                "Traditional bronze and marble casting",
+                "Welded steel and painted aluminum",
+                "Found wooden furniture and domestic objects",
+              ],
+              correct: 0,
+              explanation:
+                "Hesse deliberately chose unstable materials that change over time — latex yellows and cracks, rope sags. This impermanence was central to her critique of Minimalism's claim to timeless geometric purity.",
+              curatorNote:
+                "Decay is part of the work's argument—notice when permanence would have been the more conservative choice.",
+            },
+            {
+              question: "El Anatsui's large draped works are assembled primarily from what?",
+              options: [
+                "Hand-woven silk threads dyed with plant pigments",
+                "Thousands of flattened bottle caps and aluminum foil",
+                "Cast concrete blocks arranged in grids",
+                "Neon tubing bent into calligraphic lines",
+              ],
+              correct: 1,
+              explanation:
+                "He links African textile traditions with the global trade routes that brought alcohol to West Africa—material memory is never neutral.",
+            },
+            {
+              question: "Simone Leigh's Brick House merges the female figure with what?",
+              options: [
+                "Industrial machinery and scaffolding",
+                "Classical Greek architectural columns",
+                "Architectural forms referencing African vernacular buildings",
+                "Digital projection and neon light",
+              ],
+              correct: 2,
+              explanation:
+                "Leigh fused a monumental Black female bust with a skirt resembling a thatched African granary. The title references both the idiom for a large woman and architecture as a carrier of cultural memory.",
+            },
+            {
+              question: "Anatsui's bottle-cap fields most directly reference which traditions?",
+              options: [
+                "European cathedral stained glass",
+                "African kente cloth and patterns of global trade",
+                "Japanese origami and paper folding",
+                "American Abstract Expressionist drip painting",
+              ],
+              correct: 1,
+              explanation:
+                "The shimmering fields read as textile from a distance while carrying the history of commodities and exchange up close.",
+            },
+            {
+              question: "Material-led sculpture in this topic insists that what is never neutral?",
+              options: [
+                "The artist's birth year alone",
+                "What things are made of and the labor that shaped them",
+                "Whether the work is displayed indoors",
+                "The frame around a photograph",
+              ],
+              correct: 1,
+              explanation:
+                "Hesse's decaying polymers, Anatsui's recycled metal, and Leigh's architectural clay all make substance and process part of the meaning.",
+            },
+          ],
+        },
       },
       quiz: [
         {
@@ -765,7 +957,8 @@ export const APP_DATA = {
               name: "Tehching Hsieh",
               years: "b. 1950",
               image: "images/artists/tehching_hsieh.jpg",
-              imageAlt: "Photograph of Tehching Hsieh.",
+              imageAlt:
+                "MoMA installation view: a row of small black-and-white portrait photographs of Tehching Hsieh from his One Year Performance.",
               imagePlaceholder: "#1a1a2a",
               insight: "Hsieh's One Year Performances subjected his body to extreme constraints for exactly 365 days — punching a time clock every hour, living outdoors, never entering buildings. Art as a record of time itself.",
               keyWork: "One Year Performance (1980–81)",

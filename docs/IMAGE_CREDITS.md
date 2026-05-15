@@ -53,7 +53,7 @@ The following files were cached locally from the URLs in [`scripts/commons-manif
 | Shigeko Kubota | `images/artists/shigeko_kubota.jpg` | Hugo van Gelderen (ANEFO) / Nationaal Archief (Netherlands). CC0 1.0. https://commons.wikimedia.org/wiki/File:Fluxus1964.jpg |
 | Simone Leigh | `images/artists/simone_leigh.jpg` | Tiffany I. Smith. CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:Simone%20Leigh%202.jpg |
 | Susan Meiselas | `images/artists/susan_meiselas.jpg` | Photo by Joe Mabel. CC BY-SA 4.0. https://commons.wikimedia.org/wiki/File:Susan%20Meiselas%2001.jpg |
-| Tehching Hsieh | `images/artists/tehching_hsieh.jpg` | Timothy Vollmer. CC BY 2.0. https://commons.wikimedia.org/wiki/File:Tehching%20Hsieh%20Cage%20Piece%20(1).jpg |
+| Tehching Hsieh | `images/artists/tehching_hsieh.jpg` | Victor Felder. CC BY-SA 2.0. https://commons.wikimedia.org/wiki/File:TehchingHsiehExhibitMOMA.jpg |
 | Ulrike Rosenbach | `images/artists/ulrike_rosenbach.jpg` | Renate Brandt. CC BY-SA 3.0 de. https://commons.wikimedia.org/wiki/File:Ulrike%20Rosenbach.jpg |
 | Ursula von Rydingsvard | `images/artists/ursula_von_rydingsvard.jpg` | Danuta Matloch / Ministerstwo Kultury, Dziedzictwa Narodowego i Sportu. CC BY 3.0 pl. https://commons.wikimedia.org/wiki/File:Ursula%20von%20Rydingsvard%20with%20flowers.jpg |
 | Yoko Ono | `images/artists/yoko_ono.jpg` | Yoko Ono, photo by Till Niermann. CC BY-SA 3.0. https://commons.wikimedia.org/wiki/File:YokoOno%20PaintingToHammerANailIn.jpg |
